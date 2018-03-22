@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "934969145632",
+    "firebase_url": "https://centro-de-notificaciones-tpi.firebaseio.com",
+    "project_id": "centro-de-notificaciones-tpi",
+    "storage_bucket": "centro-de-notificaciones-tpi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934969145632:android:dfaf8ab99067d4fa",
+        "android_client_info": {
+          "package_name": "com.tecnologiaparainmobiliarias.centrodenotificacionestpi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934969145632-d2vd927ebt5am15h9817d7krc241cil2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecnologiaparainmobiliarias.centrodenotificacionestpi",
+            "certificate_hash": "acea9562f1f3531d7c31a7bad468b015cc91c9f7"
+          }
+        },
+        {
+          "client_id": "934969145632-mqsm38j4hq8dslonmv8cgqnu3164978h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvgkOz7Q-aTvP2p5umNOe2Z6Rw9UZqUgI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934969145632-mqsm38j4hq8dslonmv8cgqnu3164978h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
