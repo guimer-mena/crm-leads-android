@@ -188,7 +188,7 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
 
             final String iddispositivo = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
-            Call<UsuarioLogin> loginCall = mCrmApi.login(cuenta,user,password);
+            Call<UsuarioLogin> loginCall = mCrmApi.login(cuenta,user,password,"APP_ANDROID",iddispositivo);
 
             loginCall.enqueue(new Callback<UsuarioLogin>() {
                 @Override
@@ -216,7 +216,7 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
 
                     String EstadoSession = response.body().getEstado().toString();
 
-                    if(EstadoSession.equals("SESSION_AUTORIZADA")){
+                    if(EstadoSession.equals("SESSION_AUTORIZADA") && response.body().getClave_session() != null){
                         Toast.makeText(LoginTPIActivity.this,"Sesion Iniciada", Toast.LENGTH_LONG).show();
 
                         //Guardar preferencias de usuario
@@ -264,6 +264,7 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
 
                 @Override
                 public void onFailure(Call<UsuarioLogin> call, Throwable t) {
+                    showProgress(false);
                     Log.d("Error_retrofit_login",t.getMessage()+" "+t.getLocalizedMessage());
                 }
             });

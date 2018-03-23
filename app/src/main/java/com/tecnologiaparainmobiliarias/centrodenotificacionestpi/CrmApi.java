@@ -24,8 +24,8 @@ public interface CrmApi {
 
     @FormUrlEncoded
     @POST("usuarios/validar_acceso_simple")
-        //Call<UsuarioLogin> login(@Field("numeroCuenta") String cuenta, @Field("usuario") String usuario, @Field("contrasenia") String contrasenia,@Field("tipo_acceso") String tipo_acceso, @Field("dispositivo_id") String dispositivo_id );
-    Call<UsuarioLogin> login(@Field("numeroCuenta") String cuenta, @Field("usuario") String usuario, @Field("contrasenia") String contrasenia );
+    Call<UsuarioLogin> login(@Field("numeroCuenta") String cuenta, @Field("usuario") String usuario, @Field("contrasenia") String contrasenia,@Field("tipo_acceso") String tipo_acceso, @Field("dispositivo_id") String dispositivo_id );
+    //Call<UsuarioLogin> login(@Field("numeroCuenta") String cuenta, @Field("usuario") String usuario, @Field("contrasenia") String contrasenia );
 
     @FormUrlEncoded
     @POST("usuarios/actualizar_token_notificaciones")
