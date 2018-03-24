@@ -255,7 +255,7 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
 
                         showAppointmentsScreen();
                     }else{
-                        Toast.makeText(LoginTPIActivity.this,"Ovurrio un error al iniciar sesion, intente de nuevo.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginTPIActivity.this,"Ocurrio un error al iniciar sesion, intente de nuevo.",Toast.LENGTH_LONG).show();
                         return;
                     }
 

@@ -2,6 +2,7 @@ package com.tecnologiaparainmobiliarias.centrodenotificacionestpi;
 
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.ActualizarToken;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.UsuarioLogin;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.VerificarSesion;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -31,4 +32,7 @@ public interface CrmApi {
     @POST("usuarios/actualizar_token_notificaciones")
     Call<ActualizarToken> actualizarToken(@Field("numeroCuenta") String cuenta, @Field("idusuario") String idusuario, @Field("token") String token, @Field("clave_session") String clave_session, @Field("dispositivo") String dispositivo, @Field("iddispositivo") String ididspositivo);
 
+    @FormUrlEncoded
+    @POST("usuarios/verificar_sesion_activa")
+    Call<VerificarSesion> verificarSesion(@Field("numeroCuenta") String cuenta, @Field("claveSession") String claveSession);
 }

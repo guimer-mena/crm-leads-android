@@ -13,8 +13,8 @@ import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.UsuarioLo
 public class PreferenciasUsuario {
 
     public static final String PREF_NAME = "USER_CRM";
-    public static final String PREF_USER_ID = "0";
-    public static final String PREF_USER_CUENTA = "0";
+    public static final String PREF_USER_ID = "PREF_ID";
+    public static final String PREF_USER_CUENTA = "PREF_CUENTA";
     public static final String PREF_USER_CLAVE_SESION = "PREF_CLAVE_SESION";
     public static final String PREF_USER_FOTO = "PREF_FOTO";
     public static final String PREF_USER_NOMBRE = "PREF_FOTO";
