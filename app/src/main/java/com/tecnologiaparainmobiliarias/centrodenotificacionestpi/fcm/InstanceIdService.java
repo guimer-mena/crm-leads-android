@@ -61,7 +61,7 @@ public class InstanceIdService extends FirebaseInstanceIdService {
                     String error = "Ha ocurrido un error. Contacte al administrador.";
                     Log.d("ERROR_RETROFIT", error);
                 } else {
-                    if (response.body().getEstado() == "SESSION_AUTORIZADA") {
+                    if (response.body().getEstado().equals("SESSION_AUTORIZADA")) {
 
                         if (response.body().getMensaje() == "error agregar token" || response.body().getMensaje() == "error actualizar token") {
                             Log.d("ErrorActualizarToken", "Error al actualizar token");
