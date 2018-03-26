@@ -2,7 +2,7 @@ package com.tecnologiaparainmobiliarias.centrodenotificacionestpi;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,11 +22,6 @@ import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.notificaciones.
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.notificaciones.NotificationsPresenter;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.preferencias.PreferenciasUsuario;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
