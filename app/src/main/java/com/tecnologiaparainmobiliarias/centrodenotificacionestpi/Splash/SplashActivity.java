@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
     private Retrofit mRestAdaper;
     private CrmApi mCrmApi;
 
-    private final int DURACION_SPLASH = 2000;
+    private final int DURACION_SPLASH = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        //Redireccion si no eesta logueado
+        //Redireccion si no esta logueado
         if(!PreferenciasUsuario.get(this).isLoggedIn()){
             startActivity(new Intent(this,LoginTPIActivity.class));
             finish();
@@ -86,6 +86,10 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<VerificarSesion> call, Throwable t) {
                 Log.d("Error_retrofit_vsesion", t.getMessage() + " " + t.getLocalizedMessage());
+                PreferenciasUsuario.get(SplashActivity.this).LogOut();
+                startActivity(new Intent(SplashActivity.this,LoginTPIActivity.class));
+                finish();
+                return;
             }
         });
 
