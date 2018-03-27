@@ -75,8 +75,6 @@ public class PreferenciasUsuario {
             @Override
             public void run() {
                 try {
-                    String tok = FirebaseInstanceId.getInstance().getToken();
-                    Log.d("tokenCerrar", tok);
                     FirebaseInstanceId.getInstance().deleteInstanceId();
                 } catch (IOException e) {
                     e.printStackTrace();
