@@ -3,8 +3,12 @@ package com.tecnologiaparainmobiliarias.centrodenotificacionestpi.preferencias;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.UsuarioLogin;
+
+import java.io.IOException;
 
 /**
  * Created by guime on 22/03/2018.
@@ -66,6 +70,20 @@ public class PreferenciasUsuario {
         editor.putString(PREF_USER_CUENTA, null);
         editor.putString(PREF_USER_NOMBRE, null);
         editor.putString(PREF_USER_FOTO, null);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String tok = FirebaseInstanceId.getInstance().getToken();
+                    Log.d("tokenCerrar", tok);
+                    FirebaseInstanceId.getInstance().deleteInstanceId();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
         editor.apply();
 
     }
