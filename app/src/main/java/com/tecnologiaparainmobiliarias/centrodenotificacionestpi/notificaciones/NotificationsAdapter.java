@@ -19,9 +19,11 @@ import java.util.ArrayList;
 public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdapter.ViewHolder> {
 
     ArrayList<PushNotification> pushNotifications = new ArrayList<>();
+    private OnItemClickListener itemClickListener;
 
-    public NotificationsAdapter(){
 
+    public NotificationsAdapter(OnItemClickListener listener){
+        this.itemClickListener = listener;
     }
 
     @Override
@@ -37,9 +39,10 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     public void onBindViewHolder(NotificationsAdapter.ViewHolder holder, int position) {
         PushNotification newNotification = pushNotifications.get(position);
 
-        holder.title.setText(newNotification.getTitulo());
-        holder.description.setText(newNotification.getDescripcion());
-        holder.expiryDate.setText(String.format(newNotification.getFecha()));
+        //holder.title.setText(newNotification.getTitulo());
+        //holder.description.setText(newNotification.getDescripcion());
+        //holder.expiryDate.setText(String.format(newNotification.getFecha()));
+        holder.bind(pushNotifications.get(position).getTitulo(),pushNotifications.get(position).getDescripcion(),String.format(pushNotifications.get(position).getFecha()),pushNotifications.get(position).getUrl(), itemClickListener);
     }
 
     @Override
@@ -74,5 +77,22 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             expiryDate = (TextView) itemView.findViewById(R.id.tv_expiry_date);
             //discount = (TextView) itemView.findViewById(R.id.tv_discount);
         }
+
+        public void bind(final String titulo, final String descripcion, final String fecha, final String url, final OnItemClickListener listener){
+            this.title.setText(titulo);
+            this.description.setText(descripcion);
+            this.expiryDate.setText(fecha);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(url, getAdapterPosition());
+                }
+            });
+        }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(String url, int position);
     }
 }

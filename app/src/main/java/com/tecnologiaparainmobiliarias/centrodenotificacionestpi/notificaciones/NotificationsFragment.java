@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.MainActivity;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.R;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotification;
 
@@ -56,7 +59,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                 String descripcion = intent.getStringExtra("descripcion");
                 String fecha = intent.getStringExtra("fecha");
                 String url = intent.getStringExtra("url");
-
+                Log.d("URLNOTIFICACION", "- "+url);
                 mPresenter.savePushMessage(titulo,descripcion,fecha,url);
             }
         };
@@ -69,7 +72,12 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_notifications,container,false);
 
-        mNotificationAdapter = new NotificationsAdapter();
+        mNotificationAdapter = new NotificationsAdapter(new NotificationsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String url, int position) {
+                Toast.makeText( getActivity() , url +" - "+ position, Toast.LENGTH_LONG).show();
+            }
+        });
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv_notifications_list);
         mNoMessagesView = (LinearLayout) root.findViewById(R.id.noMessages);
         mRecyclerView.setAdapter(mNotificationAdapter);

@@ -41,6 +41,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         intent.putExtra("titulo", remoteMessage.getNotification().getTitle());
         intent.putExtra("descripcion", remoteMessage.getNotification().getBody());
         intent.putExtra("fecha", remoteMessage.getData().get("fecha"));
+        intent.putExtra( "url", remoteMessage.getData().get("url"));
         //intent.putExtra("discount", remoteMessage.getData().get("discount"));
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .sendBroadcast(intent);
