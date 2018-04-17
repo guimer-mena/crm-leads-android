@@ -20,7 +20,7 @@ public interface CrmApi {
     TODO: Cambiar host por IP de tu PC para dispositivo real.
     */
 
-    public static final String BASE_URL = "http://10.0.2.2:8036/webservice/1.1/crm/rest/";
+    public static final String BASE_URL = "http://10.0.2.2:8008/webservice/1.1/crm/rest/";
     //public static final String BASE_URL = "http://192.168.1.96:8011/webservice/1.1/crm/rest/";
 
     @FormUrlEncoded

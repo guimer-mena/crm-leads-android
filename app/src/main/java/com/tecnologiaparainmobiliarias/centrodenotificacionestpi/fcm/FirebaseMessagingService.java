@@ -37,11 +37,12 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     }
 
     private void sendNewPromoBroadcast(RemoteMessage remoteMessage) {
-        Intent intent = new Intent(NotificationsFragment.ACTION_NOTIFY_NEW_PROMO);
+        Intent intent = new Intent(NotificationsFragment.ACTION_NOTIFY_NEW_NOTIFY);
         intent.putExtra("titulo", remoteMessage.getNotification().getTitle());
         intent.putExtra("descripcion", remoteMessage.getNotification().getBody());
         intent.putExtra("fecha", remoteMessage.getData().get("fecha"));
         intent.putExtra( "url", remoteMessage.getData().get("url"));
+        intent.putExtra("logo", remoteMessage.getData().get("icono"));
         //intent.putExtra("discount", remoteMessage.getData().get("discount"));
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .sendBroadcast(intent);

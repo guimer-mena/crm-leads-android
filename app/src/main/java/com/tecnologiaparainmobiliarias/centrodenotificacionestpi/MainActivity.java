@@ -37,6 +37,7 @@ import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.preferencias.Pr
 
 import java.io.FilenameFilter;
 
+import io.realm.Realm;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 
@@ -47,10 +48,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NotificationsFragment mNotificationFragment;
     private NotificationsPresenter mNotificationPresenter;
 
+    private Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        realm = Realm.getDefaultInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().add(R.id.notifications_container,mNotificationFragment).commit();
         }
 
-        mNotificationPresenter = new NotificationsPresenter(mNotificationFragment, FirebaseMessaging.getInstance());
+        mNotificationPresenter = new NotificationsPresenter(mNotificationFragment, FirebaseMessaging.getInstance(),getApplicationContext());
 
         //Asignar informacion del usuario al menu laterar
 
@@ -142,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //txtNombreEmpresa.setText(nombreEmpresa);
         //txtNombreEmpresa.setText("");
         toolbar.setTitle(nombreEmpresa);
-        toolbar.setSubtitle("Notificaciones");
+        //toolbar.setSubtitle("Notificaciones");
 
 
 
@@ -152,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         CollapsingToolbarLayout collapser = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapser.setTitle(nombreEmpresa);
-        toolbar.setSubtitle("Notificaciones");
+        //toolbar.setSubtitle("Notificaciones");
 
 
 

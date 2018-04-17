@@ -18,15 +18,18 @@ import android.widget.Toast;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.MainActivity;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.R;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotification;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
 
 /**
  * create an instance of this fragment.
  */
 public class NotificationsFragment extends Fragment implements NotificationsContract.View {
 
-    public static final String ACTION_NOTIFY_NEW_PROMO = "NOTIFY_NEW_PROMO";
+    public static final String ACTION_NOTIFY_NEW_NOTIFY = "NEW_NOTIFY";
     private BroadcastReceiver mNotificacionReceiver;
 
     private RecyclerView mRecyclerView;
@@ -34,6 +37,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
     private NotificationsAdapter mNotificationAdapter;
 
     private NotificationsPresenter mPresenter;
+    private Realm realm;
 
     public NotificationsFragment() {
         // Required empty public constructor
@@ -51,6 +55,9 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
         if (getArguments() != null) {
 
         }
+
+        realm = Realm.getDefaultInstance();
+
         mNotificacionReceiver = new BroadcastReceiver() {
 
             @Override
@@ -59,8 +66,10 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                 String descripcion = intent.getStringExtra("descripcion");
                 String fecha = intent.getStringExtra("fecha");
                 String url = intent.getStringExtra("url");
-                Log.d("URLNOTIFICACION", "- "+url);
-                mPresenter.savePushMessage(titulo,descripcion,fecha,url);
+                String logo = intent.getStringExtra("logo");
+                //Log.d("URLNOTIFICACION", "- "+url);
+                Log.d("URLNOTIFICACION", "- "+logo+" - "+descripcion+" - "+fecha+" - "+url+" - "+titulo+" - ");
+                mPresenter.savePushMessage(titulo,descripcion,fecha,url,logo);
             }
         };
     }
@@ -72,12 +81,12 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_notifications,container,false);
 
-        mNotificationAdapter = new NotificationsAdapter(new NotificationsAdapter.OnItemClickListener() {
+        mNotificationAdapter = new NotificationsAdapter(getActivity().getApplicationContext(), new NotificationsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String url, int position) {
                 Toast.makeText( getActivity() , url +" - "+ position, Toast.LENGTH_LONG).show();
             }
-        });
+        }, mPresenter.showData());
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv_notifications_list);
         mNoMessagesView = (LinearLayout) root.findViewById(R.id.noMessages);
         mRecyclerView.setAdapter(mNotificationAdapter);
@@ -91,7 +100,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
 
         mPresenter.start();
 
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mNotificacionReceiver, new IntentFilter(ACTION_NOTIFY_NEW_PROMO));
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mNotificacionReceiver, new IntentFilter(ACTION_NOTIFY_NEW_NOTIFY));
     }
 
     @Override
@@ -111,7 +120,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
     }
 
     @Override
-    public void showNotifications(ArrayList<PushNotification> notifications) {
+    public void showNotifications(ArrayList<Notificacion> notifications) {
         mNotificationAdapter.replaceData(notifications);
     }
 
@@ -122,7 +131,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
     }
 
     @Override
-    public void popPushNotification(PushNotification pushMessage) {
+    public void popPushNotification(Notificacion pushMessage) {
         mNotificationAdapter.addItem(pushMessage);
     }
 
