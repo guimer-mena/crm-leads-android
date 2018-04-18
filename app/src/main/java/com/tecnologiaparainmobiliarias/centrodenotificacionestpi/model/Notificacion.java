@@ -1,6 +1,7 @@
 package com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model;
 
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.app.MiAplicacion;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Realm.RealmHelper;
 
 import java.util.Date;
 
@@ -22,7 +23,7 @@ public class Notificacion  extends RealmObject{
 
     public Notificacion(String titulo,String descripcion, String url, String logo, String fecha) {
     //public Notificacion(String titulo) {
-        Id = MiAplicacion.NotificacionId.incrementAndGet();
+        Id = RealmHelper.NotificacionId.incrementAndGet();
         Titulo = titulo;
         DescripcionComleta = descripcion;
         Descripcion = descripcion;

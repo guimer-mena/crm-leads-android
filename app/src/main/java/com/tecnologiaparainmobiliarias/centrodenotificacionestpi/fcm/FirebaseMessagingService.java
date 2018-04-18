@@ -64,7 +64,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent).setChannelId(String.valueOf(1));
 
         /*if(data.get("icono") != ""){
             notificationBuilder.setLargeIcon();
