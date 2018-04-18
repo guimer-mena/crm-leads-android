@@ -34,6 +34,9 @@ public class RealmHelper {
         int id;
         String titulo;
         String descripcion;
+        String fecha;
+        String url;
+        String icono;
 
         ArrayList<Notificacion> data = new ArrayList<>();
 
@@ -44,7 +47,12 @@ public class RealmHelper {
             for (int i = 0; i < realmResults.size(); i++){
 
                 titulo = realmResults.get(i).getTitulo();
-                data.add( new Notificacion(titulo));
+                descripcion = realmResults.get(i).getDescripcion();
+                fecha = realmResults.get(i).getFecha();
+                url = realmResults.get(i).getUrl();
+                icono = realmResults.get(i).getIcono();
+
+                data.add( new Notificacion(titulo, descripcion,url,icono,fecha));
 
             }
         }
@@ -66,7 +74,7 @@ public class RealmHelper {
         realm.beginTransaction();
         realm.copyToRealm(data);
         realm.commitTransaction();
-        Log.d("Guardar_Notificacion", "Notificacion Guardada");
+        //Log.d("Guardar_Notificacion", "Notificacion Guardada: "+name+" / "+descipcion+" / "+fecha+" / "+ url + " / "+logo);
     }
     public void deleteNotification(int id){
         RealmResults<Notificacion> dataRealm = realm.where(Notificacion.class).equalTo("Id", id).findAll();

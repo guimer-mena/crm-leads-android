@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNotificationFragment = (NotificationsFragment) getSupportFragmentManager().findFragmentById(R.id.notifications_container);
 
         if(mNotificationFragment == null){
+
+
             mNotificationFragment = NotificationsFragment.newInstance();
             getSupportFragmentManager().beginTransaction().add(R.id.notifications_container,mNotificationFragment).commit();
         }

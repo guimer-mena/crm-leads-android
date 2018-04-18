@@ -20,15 +20,15 @@ public class Notificacion  extends RealmObject{
 
     public Notificacion(){}
 
-    //public Notificacion(String titulo, String descripcionComleta, String descripcion, String url, String logo, Date Fecha) {
-    public Notificacion(String titulo) {
+    public Notificacion(String titulo,String descripcion, String url, String logo, String fecha) {
+    //public Notificacion(String titulo) {
         Id = MiAplicacion.NotificacionId.incrementAndGet();
         Titulo = titulo;
-        //DescripcionComleta = descripcionComleta;
-        //Descripcion = descripcion;
-        //Url = url;
-        //this.logo = logo;
-        //this.Fecha = Fecha;
+        DescripcionComleta = descripcion;
+        Descripcion = descripcion;
+        Url = url;
+        Icono = logo;
+        Fecha = fecha;
     }
 
     public int getId() {

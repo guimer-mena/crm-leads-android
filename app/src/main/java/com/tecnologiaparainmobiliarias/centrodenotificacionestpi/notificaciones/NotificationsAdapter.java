@@ -49,6 +49,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     public void onBindViewHolder(NotificationsAdapter.ViewHolder holder, int position) {
         //PushNotification newNotification = pushNotifications.get(position);
         Notificacion newNotification = pushNotifications.get(position);
+
         //Log.d("bindHolder", "-"+pushNotifications.get(position).getTitulo()+pushNotifications.get(position).getDescripcion()+String.format(pushNotifications.get(position).getFecha())+pushNotifications.get(position).getUrl()+ pushNotifications.get(position).getIcono());
 
         //holder.title.setText(newNotification.getTitulo());
@@ -62,7 +63,6 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
     @Override
     public int getItemCount() {
-        Log.d("obtenidos", "--"+pushNotifications.size());
         return pushNotifications.size();
     }
 
@@ -101,7 +101,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             this.description.setText(descripcion);
             this.expiryDate.setText(fecha);
             if(icono != null){
-                //Picasso.with(this).load(fotoUsuario).resize(150,150).transform(new CropCircleTransformation()).centerCrop().into(imgAvatar);
+
                 Picasso.with(context).load(icono).resize(150,150).transform(new CropCircleTransformation()).centerCrop().into(iconoView);
             }
 

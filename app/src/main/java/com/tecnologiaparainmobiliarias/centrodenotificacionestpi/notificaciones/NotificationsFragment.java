@@ -68,7 +68,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                 String url = intent.getStringExtra("url");
                 String logo = intent.getStringExtra("logo");
                 //Log.d("URLNOTIFICACION", "- "+url);
-                Log.d("URLNOTIFICACION", "- "+logo+" - "+descripcion+" - "+fecha+" - "+url+" - "+titulo+" - ");
+                //Log.d("URLNOTIFICACION", "- "+logo+" - "+descripcion+" - "+fecha+" - "+url+" - "+titulo+" - ");
                 mPresenter.savePushMessage(titulo,descripcion,fecha,url,logo);
             }
         };

@@ -51,7 +51,7 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
     @Override
     public void loadNotifications() {
 
-        PushNotificationsRepository.getInstance().getPushNotifications(new PushNotificationsRepository.LoadCallback() {
+        /*PushNotificationsRepository.getInstance().getPushNotifications(new PushNotificationsRepository.LoadCallback() {
             @Override
             public void onLoaded(ArrayList<Notificacion> notifications) {
                 if (notifications.size() > 0){
@@ -62,7 +62,18 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
 
                 }
             }
-        });
+        });*/
+
+
+        ArrayList<Notificacion> notifications = showData();
+
+        if (notifications.size() > 0){
+            mNotificationView.showEmptyState(false);
+            mNotificationView.showNotifications(notifications);
+        }else{
+            mNotificationView.showEmptyState(true);
+
+        }
 
     }
 
@@ -88,11 +99,11 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
     public ArrayList<Notificacion> showData() {
         ArrayList<Notificacion> resp = new ArrayList<Notificacion>();
         resp = realmHelper.showAllNotifications();
-        Log.d("obtenidos", "- "+resp.size());
+        /*Log.d("obtenidoss", "- "+resp.size());
         for (int i = 0; i < resp.size(); i++)
         {
-            Log.d("obtenidos", "- "+resp.get(i).getTitulo()+"-"+resp.get(i).getUrl());
-        }
+            Log.d("obtenidos"+i, "- "+resp.get(i).getTitulo()+"-"+resp.get(i).getUrl());
+        }*/
         return resp;
 
     }

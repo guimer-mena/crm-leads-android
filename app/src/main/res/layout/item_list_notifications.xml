@@ -40,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="2dp"
             android:layout_toRightOf="@+id/tv_image"
             android:text="New Text"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
@@ -51,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/tv_image"
             android:text="New Text"
             tools:text="Lorem ipsum dolo" />
