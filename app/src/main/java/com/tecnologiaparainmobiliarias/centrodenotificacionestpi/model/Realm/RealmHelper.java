@@ -6,6 +6,7 @@ import android.util.Log;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
@@ -39,7 +40,7 @@ public class RealmHelper {
         int id;
         String titulo;
         String descripcion;
-        String fecha;
+        Date fecha;
         String url;
         String icono;
 
@@ -65,7 +66,7 @@ public class RealmHelper {
         return data;
     }
 
-    public void addNewNotification(String name, String descipcion, String fecha, String url, String logo) {
+    public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo) {
         Notificacion data = new Notificacion();
         //data.setId(getCount() + 1);
         data.setId(NotificacionId.getAndIncrement());

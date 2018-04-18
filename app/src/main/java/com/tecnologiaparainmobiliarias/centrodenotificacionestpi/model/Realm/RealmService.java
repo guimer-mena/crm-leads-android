@@ -2,6 +2,8 @@ package com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Realm;
 
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
 
+import java.util.Date;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -23,7 +25,7 @@ public class RealmService {
         return mRealm.where(Notificacion.class).equalTo("Id",IdNotificacion).findFirst();
     }
 
-    public void addNotificationAsync(final String titulo, final String descipcion, final String fecha, final String url, final String logo, final OnTransactionCallback onTransactionCallback){
+    public void addNotificationAsync(final String titulo, final String descipcion, final Date fecha, final String url, final String logo, final OnTransactionCallback onTransactionCallback){
 
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override

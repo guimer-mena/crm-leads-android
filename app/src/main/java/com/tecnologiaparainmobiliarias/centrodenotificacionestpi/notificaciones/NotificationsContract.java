@@ -6,6 +6,7 @@ import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotifi
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by guime on 22/03/2018.
@@ -21,7 +22,7 @@ public interface NotificationsContract {
     interface Presenter extends BasePresenter{
         void registerAppClient();
         void loadNotifications();
-        void savePushMessage(String title, String description,String expireDate, String url, String logo);
+        void savePushMessage(String title, String description, Date expireDate, String url, String logo);
         ArrayList<Notificacion> showData();
     }
 }

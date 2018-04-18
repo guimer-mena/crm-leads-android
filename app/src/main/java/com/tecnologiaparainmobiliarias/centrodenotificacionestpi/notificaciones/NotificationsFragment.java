@@ -20,7 +20,11 @@ import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.R;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotification;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import io.realm.Realm;
 
@@ -64,7 +68,18 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
             public void onReceive(Context context, Intent intent) {
                 String titulo = intent.getStringExtra("titulo");
                 String descripcion = intent.getStringExtra("descripcion");
-                String fecha = intent.getStringExtra("fecha");
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = format.parse(intent.getStringExtra("fecha"));
+                    //String fecha2 = format.format(fecha);
+                    //Log.d("FECHA", intent.getStringExtra("fecha"));
+                    //Log.d("FECHA1",fecha.toString() );
+                    //Log.d("FECHA2",fecha2 );
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    //Log.d("FECHA",e.toString());
+                }
                 String url = intent.getStringExtra("url");
                 String logo = intent.getStringExtra("logo");
                 //Log.d("URLNOTIFICACION", "- "+url);

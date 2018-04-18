@@ -14,7 +14,9 @@ import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.R;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotification;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
@@ -56,7 +58,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         //holder.description.setText(newNotification.getDescripcion());
         //holder.expiryDate.setText(String.format(newNotification.getFecha()));
         //holder.expiryDate.setText(newNotification.getFecha());
-
+        //Log.d("Fecha",newNotification.getFecha().toString());
         holder.bind(newNotification.getTitulo(),newNotification.getDescripcion(),newNotification.getFecha(),newNotification.getUrl(), newNotification.getIcono(), itemClickListener);
         //holder.bind(pushNotifications.get(position).getTitulo(),pushNotifications.get(position).getDescripcion(),String.format(pushNotifications.get(position).getFecha()),pushNotifications.get(position).getUrl(), itemClickListener);
     }
@@ -96,10 +98,13 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             iconoView = (ImageView) itemView.findViewById(R.id.tv_image);
         }
 
-        public void bind(final String titulo, final String descripcion, final String fecha, final String url, final String icono, final OnItemClickListener listener){
+        public void bind(final String titulo, final String descripcion, final Date fecha, final String url, final String icono, final OnItemClickListener listener){
             this.title.setText(titulo);
             this.description.setText(descripcion);
-            this.expiryDate.setText(fecha);
+            //this.expiryDate.setText(fecha.toString());
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaM = format.format(fecha);
+            this.expiryDate.setText(fechaM);
             if(icono != null){
 
                 Picasso.with(context).load(icono).resize(150,150).transform(new CropCircleTransformation()).centerCrop().into(iconoView);
