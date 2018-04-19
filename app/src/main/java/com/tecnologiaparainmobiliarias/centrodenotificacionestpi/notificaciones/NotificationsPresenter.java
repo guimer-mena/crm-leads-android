@@ -93,7 +93,7 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
         //pushNotification.setId();
 
         PushNotificationsRepository.getInstance().savePushNotification(pushMessage);
-        //Log.d("DatosGusrdar", "-"+title+"-"+description+"-"+expireDate+url+"-"+logo);
+
         realmHelper.addNewNotification(title,description,expireDate,url, logo);
 
         mNotificationView.showEmptyState(false);

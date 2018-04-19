@@ -16,6 +16,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class RealmHelper {
     private Realm realm;
@@ -50,7 +51,7 @@ public class RealmHelper {
         ArrayList<Notificacion> data = new ArrayList<>();
 
         realmResults = realm.where(Notificacion.class).findAll();
-        realmResults.sort("Id");
+        realmResults = realmResults.sort("Id", Sort.DESCENDING);
 
         if(realmResults.size() > 0){
             for (int i = 0; i < realmResults.size(); i++){

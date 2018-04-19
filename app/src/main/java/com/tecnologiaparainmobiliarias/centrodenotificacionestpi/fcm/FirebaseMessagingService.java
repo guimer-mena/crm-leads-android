@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
@@ -14,11 +16,15 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.google.firebase.messaging.RemoteMessage;
+import com.squareup.picasso.Picasso;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.MainActivity;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.R;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.notificaciones.NotificationsFragment;
 
+import java.io.IOException;
 import java.util.Map;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 import static android.content.ContentValues.TAG;
 
@@ -54,6 +60,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
+
+
         //final RemoteViews.RemoteView remoteView = new RemoteViews.RemoteView(getPackageName(),R.layout.re)
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -64,7 +72,22 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setContentIntent(pendingIntent).setChannelId(String.valueOf(1));
+                .setContentIntent(pendingIntent);
+
+        String picture = data.get("icono");
+        Bitmap bmp = null;
+        try {
+            bmp = Picasso.with(getApplicationContext()).load(picture).resize(400, 400).transform(new CropCircleTransformation()).centerCrop().get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(bmp != null){
+            notificationBuilder.setLargeIcon(bmp);
+        }
+
+        /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            notificationBuilder.setColor(Color.GREEN);
+        }*/
 
         /*if(data.get("icono") != ""){
             notificationBuilder.setLargeIcon();
