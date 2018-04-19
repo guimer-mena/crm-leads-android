@@ -64,8 +64,13 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
             }
         });*/
 
+        realmHelper.EliminarUnMes();
 
         ArrayList<Notificacion> notifications = showData();
+
+
+
+        //Log.d("Mensajes", nt.toString());
 
         if (notifications.size() > 0){
             mNotificationView.showEmptyState(false);

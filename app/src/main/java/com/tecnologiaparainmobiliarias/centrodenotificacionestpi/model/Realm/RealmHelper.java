@@ -5,7 +5,10 @@ import android.util.Log;
 
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -64,6 +67,27 @@ public class RealmHelper {
         }
 
         return data;
+    }
+
+    public void EliminarUnMes(){
+        //Obtenemos fecha actual
+        Date fechaActual = new Date();
+
+        //Sumamos un mes
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fechaActual);
+        cal.add(Calendar.MONTH, 1);
+
+        //Convertimis a nueva fecha
+        Date nuevaFecha = cal.getTime();
+
+        RealmResults<Notificacion> dataRealmDelete = realm.where(Notificacion.class).greaterThan("Fecha", nuevaFecha  ).findAll();
+
+        //Eliminadmos todas la coincidencias
+        realm.beginTransaction();
+        dataRealmDelete.deleteAllFromRealm();
+        realm.commitTransaction();
+
     }
 
     public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo) {

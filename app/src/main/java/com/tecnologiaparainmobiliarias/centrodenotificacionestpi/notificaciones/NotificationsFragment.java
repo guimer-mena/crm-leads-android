@@ -72,10 +72,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                 Date fecha = null;
                 try {
                     fecha = format.parse(intent.getStringExtra("fecha"));
-                    //String fecha2 = format.format(fecha);
-                    //Log.d("FECHA", intent.getStringExtra("fecha"));
-                    //Log.d("FECHA1",fecha.toString() );
-                    //Log.d("FECHA2",fecha2 );
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                     //Log.d("FECHA",e.toString());
