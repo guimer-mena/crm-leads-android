@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -89,13 +90,18 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         public TextView discount;
         public ImageView iconoView;
 
+        public Button verMas;
+
         public ViewHolder(View itemView){
             super(itemView);
+
             title = (TextView) itemView.findViewById(R.id.tv_title);
             description = (TextView) itemView.findViewById(R.id.tv_description);
             expiryDate = (TextView) itemView.findViewById(R.id.tv_expiry_date);
             //discount = (TextView) itemView.findViewById(R.id.tv_discount);
             iconoView = (ImageView) itemView.findViewById(R.id.tv_image);
+
+            verMas = (Button) itemView.findViewById(R.id.buttonVerMas);
         }
 
         public void bind(final String titulo, final String descripcion, final Date fecha, final String url, final String icono, final OnItemClickListener listener){
@@ -116,10 +122,18 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                     listener.onItemClick(url, getAdapterPosition());
                 }
             });
+
+            verMas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(url, getAdapterPosition());
+                }
+            });
         }
     }
 
     public interface OnItemClickListener{
         void onItemClick(String url, int position);
+
     }
 }

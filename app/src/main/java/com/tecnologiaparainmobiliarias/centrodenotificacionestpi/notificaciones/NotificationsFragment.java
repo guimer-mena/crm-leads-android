@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -96,8 +98,13 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
         mNotificationAdapter = new NotificationsAdapter(getActivity().getApplicationContext(), new NotificationsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String url, int position) {
-                Toast.makeText( getActivity() , url +" - "+ position, Toast.LENGTH_LONG).show();
+                //Toast.makeText( getActivity() , url +" - "+ position, Toast.LENGTH_LONG).show();
+                if(url != null && !url.isEmpty()){
+                    Intent intentWeb = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intentWeb);
+                }
             }
+
         }, mPresenter.showData());
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv_notifications_list);
         mNoMessagesView = (LinearLayout) root.findViewById(R.id.noMessages);
