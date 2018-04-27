@@ -13,9 +13,11 @@ public class UsuarioLogin {
     private String telefono;
     private String clave_session;
     private String foto;
+    private String logo_empresa;
+    private String nombre_empresa;
 
 
-    public UsuarioLogin(String id, String cuenta, String nombre, String correo, String conexion, String telefono, String clave_session, String foto){
+    public UsuarioLogin(String id, String cuenta, String nombre, String correo, String conexion, String telefono, String clave_session, String foto,String logo_empresa, String nombre_empresa){
 
         this.id = id;
         this.cuenta = cuenta;
@@ -25,7 +27,8 @@ public class UsuarioLogin {
         this.telefono = telefono;
         this.clave_session = clave_session;
         this.foto = foto;
-
+        this.nombre_empresa = nombre_empresa;
+        this.logo_empresa = logo_empresa;
 
     }
 
@@ -90,5 +93,21 @@ public class UsuarioLogin {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getLogo_empresa() {
+        return logo_empresa;
+    }
+
+    public void setLogo_empresa(String logoEmpresa) {
+        this.logo_empresa = logoEmpresa;
+    }
+
+    public String getNombre_empresa() {
+        return nombre_empresa;
+    }
+
+    public void setNombre_empresa(String nombreEmpresa) {
+        this.nombre_empresa = nombreEmpresa;
     }
 }

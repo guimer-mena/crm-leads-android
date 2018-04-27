@@ -133,8 +133,33 @@
 
             </LinearLayout>
 
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+                <Button
+                    style="@android:style/Widget.Button.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="Soporte Técnico (52) 9999.41.7141"
+                    android:textColor="@color/colorPrimary"
+                    android:textAllCaps="false"/>
+                <Button
+                    style="@android:style/Widget.Button.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="soporte@crminmobiliario.com"
+                    android:textColor="@color/colorPrimary"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
 
     <!--<LinearLayout

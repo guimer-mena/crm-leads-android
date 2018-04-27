@@ -7,7 +7,7 @@
     app:contentPaddingLeft="@dimen/activity_horizontal_margin"
     app:contentPaddingRight="@dimen/activity_horizontal_margin"
     app:contentPaddingTop="8dp"
-    app:contentPaddingBottom="8dp"
+    app:contentPaddingBottom="4dp"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_marginTop="8dp"
@@ -29,8 +29,8 @@
             tools:text="50%" />-->
         <ImageView
             android:id="@+id/tv_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             app:srcCompat="@mipmap/ico_crm_color"
             />
@@ -40,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="2dp"
             android:layout_toRightOf="@+id/tv_image"
             android:text="New Text"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
@@ -51,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/tv_image"
             android:text="New Text"
             tools:text="Lorem ipsum dolo" />
@@ -71,7 +72,7 @@
             android:layout_alignParentRight="true"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonVerMas"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +81,7 @@
             android:text="Ver más"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textColor="?attr/colorPrimary"
-            android:textSize="13sp"
+            android:textSize="13dp"
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>

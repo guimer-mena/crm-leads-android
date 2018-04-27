@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
@@ -26,6 +27,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +70,10 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
     private TextInputLayout mFloatLabelCuenta;
 
 
+    private Button mIniciarSesion2;
+    private LinearLayout mAccesoRapido;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +96,8 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
         mFloatLabelUser = (TextInputLayout) findViewById(R.id.float_label_user);
 
         Button mIniciarSesion = (Button) findViewById(R.id.iniciar_sesion);
+        mIniciarSesion2 = (Button) findViewById(R.id.btnIniciarSesion);
+
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -123,6 +131,18 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
                 attemptLogin();
             }
         });
+
+
+
+        //Si ya ha iniciado sesion anteriormente
+        SharedPreferences mPref = getSharedPreferences("USER_CRM", Context.MODE_PRIVATE);
+        String claveSession = mPref.getString("PREF_CLAVE_SESION", "");
+        String idusuario = mPref.getString("PREF_ID", "");
+        String cuenta = mPref.getString("PREF_CUENTA", "");
+        String iddispositivo = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        if(!claveSession.isEmpty() && !idusuario.isEmpty() && !cuenta.isEmpty()){
+            Toast.makeText(this,"Sesion iniciada anteriormente",Toast.LENGTH_LONG).show();
+        }
 
     }
 

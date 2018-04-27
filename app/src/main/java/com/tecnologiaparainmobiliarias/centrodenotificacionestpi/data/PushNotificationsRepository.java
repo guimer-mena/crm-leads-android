@@ -2,6 +2,8 @@ package com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data;
 
 import android.support.v4.util.ArrayMap;
 
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
+
 import java.util.ArrayList;
 
 /**
@@ -9,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public class PushNotificationsRepository {
-    private static ArrayMap<String, PushNotification> LOCAL_PUSH_NOTIFICATIONS = new ArrayMap<>();
+    private static ArrayMap<Integer, Notificacion> LOCAL_PUSH_NOTIFICATIONS = new ArrayMap<>();
     private static PushNotificationsRepository INSTANCE;
 
     private PushNotificationsRepository() {
@@ -27,11 +29,11 @@ public class PushNotificationsRepository {
         callback.onLoaded(new ArrayList<>(LOCAL_PUSH_NOTIFICATIONS.values()));
     }
 
-    public void savePushNotification(PushNotification notification) {
+    public void savePushNotification(Notificacion notification) {
         LOCAL_PUSH_NOTIFICATIONS.put(notification.getId(), notification);
     }
 
     public interface LoadCallback {
-        void onLoaded(ArrayList<PushNotification> notifications);
+        void onLoaded(ArrayList<Notificacion> notifications);
     }
 }
