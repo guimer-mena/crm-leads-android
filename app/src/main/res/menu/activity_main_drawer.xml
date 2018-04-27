@@ -5,9 +5,30 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_cerrar_sesion"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Cerrar sesión" />
+            android:id="@+id/nav_todos"
+            android:icon="@drawable/ic_bell"
+            android:title="Todas las notificaciones">
+
+        </item>
+        <item
+            android:id="@+id/nav_sistema"
+            android:icon="@drawable/ic_bell"
+            android:title="Sistema">
+
+        </item>
+        <item
+            android:id="@+id/nav_bolsa24siete"
+            android:icon="@drawable/ic_bell"
+            android:title="Bolsa24Siete">
+
+        </item>
+        <item
+            android:id="@+id/nav_agenda"
+            android:icon="@drawable/ic_bell"
+            android:title="Agenda">
+
+        </item>
+
         <!--<item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -34,5 +55,20 @@
                 android:title="Send" />
         </menu>
     </item>-->
+    <item android:title="Opciones">
+        <menu>
+            <item
+                android:id="@+id/nav_configuracion"
+                android:icon="@drawable/ic_bell"
+                android:title="Configuracion"
+                >
+
+            </item>
+            <item
+                android:id="@+id/nav_cerrar_sesion"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Cerrar sesión" />
+        </menu>
+    </item>
 
 </menu>

@@ -1,6 +1,7 @@
 package com.tecnologiaparainmobiliarias.centrodenotificacionestpi;
 
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.ActualizarToken;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Retrofit.ObtenerTokenActivo;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.UsuarioLogin;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.VerificarSesion;
 
@@ -35,4 +36,8 @@ public interface CrmApi {
     @FormUrlEncoded
     @POST("usuarios/verificar_sesion_activa")
     Call<VerificarSesion> verificarSesion(@Field("numeroCuenta") String cuenta, @Field("claveSession") String claveSession);
+
+    @FormUrlEncoded
+    @POST("usuarios/obtener_token_activo")
+    Call<ObtenerTokenActivo> obtenerTokenActivo(@Field("numeroCuenta") String cuenta, @Field("claveSession") String clave, @Field("idUsuario") String usuario, @Field("tipoAcceso") String tipoAcceso, @Field("dispositivoId") String dispositivoId);
 }
