@@ -96,7 +96,7 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
         mFloatLabelUser = (TextInputLayout) findViewById(R.id.float_label_user);
 
         Button mIniciarSesion = (Button) findViewById(R.id.iniciar_sesion);
-        mIniciarSesion2 = (Button) findViewById(R.id.btnIniciarSesion);
+        //mIniciarSesion2 = (Button) findViewById(R.id.btnIniciarSesion);
 
 
         mLoginFormView = findViewById(R.id.login_form);
