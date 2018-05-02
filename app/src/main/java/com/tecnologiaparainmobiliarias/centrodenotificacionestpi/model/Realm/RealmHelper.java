@@ -94,7 +94,7 @@ public class RealmHelper {
     public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo) {
         Notificacion data = new Notificacion();
         //data.setId(getCount() + 1);
-        data.setId(NotificacionId.getAndIncrement());
+        data.setId(this.NotificacionId.getAndIncrement());
         data.setTitulo(name);
         data.setDescripcion(descipcion);
         data.setUrl(url);

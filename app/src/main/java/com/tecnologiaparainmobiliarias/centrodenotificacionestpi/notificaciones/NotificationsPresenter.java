@@ -94,7 +94,7 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
 
         PushNotificationsRepository.getInstance().savePushNotification(pushMessage);
 
-        realmHelper.addNewNotification(title,description,expireDate,url, logo);
+        //realmHelper.addNewNotification(title,description,expireDate,url, logo);
 
         mNotificationView.showEmptyState(false);
         mNotificationView.popPushNotification(pushMessage);
