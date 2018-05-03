@@ -18,10 +18,11 @@ public class Notificacion  extends RealmObject{
     private String Url;
     private String Icono;
     private Date Fecha;
+    private String Visto;
 
     public Notificacion(){}
 
-    public Notificacion(String titulo,String descripcion, String url, String logo, Date fecha) {
+    public Notificacion(String titulo,String descripcion, String url, String logo, Date fecha, String visto) {
     //public Notificacion(String titulo) {
         Id = RealmHelper.NotificacionId.incrementAndGet();
         Titulo = titulo;
@@ -30,6 +31,8 @@ public class Notificacion  extends RealmObject{
         Url = url;
         Icono = logo;
         Fecha = fecha;
+        Visto = visto;
+
     }
 
     public int getId() {
@@ -87,4 +90,9 @@ public class Notificacion  extends RealmObject{
     public void setFecha(Date  fecha) {
         Fecha = fecha;
     }
+
+    public String getVisto(){ return Visto; }
+
+    public void setVisto(String visto){ Visto = visto; }
+
 }

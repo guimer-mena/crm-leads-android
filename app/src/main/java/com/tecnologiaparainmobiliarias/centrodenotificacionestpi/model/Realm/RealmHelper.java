@@ -47,6 +47,7 @@ public class RealmHelper {
         Date fecha;
         String url;
         String icono;
+        String visto;
 
         ArrayList<Notificacion> data = new ArrayList<>();
 
@@ -61,8 +62,9 @@ public class RealmHelper {
                 fecha = realmResults.get(i).getFecha();
                 url = realmResults.get(i).getUrl();
                 icono = realmResults.get(i).getIcono();
+                visto = realmResults.get(i).getVisto();
 
-                data.add( new Notificacion(titulo, descripcion,url,icono,fecha));
+                data.add( new Notificacion(titulo, descripcion,url,icono,fecha,visto));
 
             }
         }
@@ -91,7 +93,7 @@ public class RealmHelper {
 
     }
 
-    public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo) {
+    public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo, String visto) {
         Notificacion data = new Notificacion();
         //data.setId(getCount() + 1);
         data.setId(this.NotificacionId.getAndIncrement());
@@ -101,6 +103,7 @@ public class RealmHelper {
         data.setDescripcionComleta(descipcion);
         data.setFecha(fecha);
         data.setIcono(logo);
+        data.setVisto(visto);
 
 
         realm.beginTransaction();

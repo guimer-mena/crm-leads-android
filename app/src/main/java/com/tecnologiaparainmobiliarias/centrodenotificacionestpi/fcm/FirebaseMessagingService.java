@@ -63,7 +63,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             //Log.d("FECHA",e.toString());
         }
         //Log.d(TAG,"FROM: "+realmHelper.NotificacionId.getAndIncrement());
-        realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"));
+        realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"),"NO");
     }
 
     private void sendNewPromoBroadcast(RemoteMessage remoteMessage) {
@@ -158,9 +158,9 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             notificationBuilder.setLargeIcon(bmp);
         }
 
-        /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            notificationBuilder.setColor(Color.GREEN);
-        }*/
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            notificationBuilder.setColor(Color.rgb(21,157,215));
+        }
 
         /*if(data.get("icono") != ""){
             notificationBuilder.setLargeIcon();
