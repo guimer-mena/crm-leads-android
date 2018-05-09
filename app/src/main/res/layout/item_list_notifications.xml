@@ -71,7 +71,7 @@
             tools:text=" 16/03/2018"
             android:layout_alignParentRight="true"/>
 
-        <Button
+        <!--<Button
             android:id="@+id/buttonVerMas"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
@@ -82,7 +82,56 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textColor="?attr/colorPrimary"
             android:textSize="13dp"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"/>-->
+        <LinearLayout
+            android:id="@+id/layoutBotonAgenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_expiry_date"
+            android:layout_toRightOf="@+id/tv_image"
+            android:gravity="center">
+            <Button
+                android:id="@+id/buttonReagendar"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_expiry_date"
+                android:layout_toRightOf="@+id/buttonCerrar"
+                android:text="Reagendar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="13dp"
+                android:layout_alignParentRight="true"
+                />
+            <Button
+                android:id="@+id/buttonFinalizar"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_expiry_date"
+                android:layout_toRightOf="@+id/buttonReagendar"
+                android:text="Finalizar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="13dp"
+                android:layout_alignParentRight="true"
+                />
+        </LinearLayout>
+        <Button
+            android:id="@+id/buttonVerMas"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutBotonAgenda"
+            android:layout_toRightOf="@+id/tv_image"
+            android:text="Ver más"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="13dp"
+            android:layout_alignParentRight="true"
+            />
+
+
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
