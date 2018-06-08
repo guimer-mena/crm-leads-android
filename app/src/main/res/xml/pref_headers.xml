@@ -1,0 +1,26 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:fragment="com.tecnologiaparainmobiliarias.centrodenotificacionestpi.SettingsActivity$GeneralPreferenceFragment"
+        android:icon="@drawable/ic_notificacion_sistema"
+        android:title="Notificaciones del sistema" />
+
+    <header
+        android:fragment="com.tecnologiaparainmobiliarias.centrodenotificacionestpi.SettingsActivity$Bolsa24SietePreferenceFragment"
+        android:icon="@drawable/ic_bolsa24siete"
+        android:title="Notificaciones de la Bolsa24Siete" />
+
+    <header
+        android:fragment="com.tecnologiaparainmobiliarias.centrodenotificacionestpi.SettingsActivity$LeadsPreferenceFragment"
+        android:icon="@drawable/ic_leads"
+        android:title="Notificaciones de Leads" />
+
+    <header
+        android:fragment="com.tecnologiaparainmobiliarias.centrodenotificacionestpi.SettingsActivity$OtrosPreferenceFragment"
+        android:icon="@drawable/ic_bell"
+        android:title="Otras Notificaciones" />
+
+
+</preference-headers>

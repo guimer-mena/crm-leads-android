@@ -32,7 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +51,6 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
     private NotificationsAdapter mNotificationAdapter;
 
     private NotificationsPresenter mPresenter;
-    private Realm realm;
 
     private Retrofit mRestAdaper;
     private CrmApi mCrmApi;
@@ -80,9 +78,6 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
         mCrmApi = mRestAdaper.create(CrmApi.class);
 
 
-
-
-        realm = Realm.getDefaultInstance();
 
         mNotificacionReceiver = new BroadcastReceiver() {
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_solicitud_de_alianza_empresa"
+        android:title="@string/pref_solicitud_de_alianza_empresa"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_invitacion_de_alianza_de_grupo"
+        android:title="@string/pref_invitacion_de_alianza_de_grupo"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_sugerencia_de_inmuebles"
+        android:title="@string/pref_sugerencia_de_inmuebles"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_nuevos_comentarios_sobre_inmueble_sugerido"
+        android:title="@string/pref_nuevos_comentarios_sobre_inmueble_sugerido"/>
+
+</PreferenceScreen>

@@ -5,11 +5,13 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -45,10 +47,22 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "¡Mensaje recibido!");
-        //Log.d(TAG, "From: " + remoteMessage.getFrom());
-        //Log.d(TAG, "From: " + this.getApplicationContext());
+
         //displayNotification(remoteMessage.getNotification(), remoteMessage.getData());
-        displayNotification2(remoteMessage.getData());
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        //Log.d("MensajeRecibido:");
+        if(remoteMessage.getData().get("categoria").toString() != ""){
+            Boolean Mostrar = true;
+            String clave = remoteMessage.getData().get("subcategoria").toString();
+            clave = "pref_notificacion_"+clave;
+            if(sharedPrefs.getBoolean(clave, true)){
+                displayNotification2(remoteMessage.getData());
+            }
+        }
+
+        //displayNotification2(remoteMessage.getData());
         sendNewPromoBroadcast(remoteMessage);
 
         realmHelper = new RealmHelper(getApplicationContext());
@@ -63,7 +77,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             //Log.d("FECHA",e.toString());
         }
         //Log.d(TAG,"FROM: "+realmHelper.NotificacionId.getAndIncrement());
-        realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"),"NO");
+        realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"), remoteMessage.getData().get("categoria"), remoteMessage.getData().get("subcategoria"),"NO");
     }
 
     private void sendNewPromoBroadcast(RemoteMessage remoteMessage) {
@@ -75,7 +89,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         intent.putExtra("fecha", remoteMessage.getData().get("fecha"));
         intent.putExtra( "url", remoteMessage.getData().get("url"));
         intent.putExtra("logo", remoteMessage.getData().get("icono"));
-        //intent.putExtra("discount", remoteMessage.getData().get("discount"));
+        intent.putExtra("categotia", remoteMessage.getData().get("categoria"));
+        intent.putExtra("subcategoria", remoteMessage.getData().get("subcategoria"));
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .sendBroadcast(intent);
     }

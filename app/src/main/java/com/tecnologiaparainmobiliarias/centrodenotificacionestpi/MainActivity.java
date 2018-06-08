@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
@@ -37,7 +38,6 @@ import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.preferencias.Pr
 
 import java.io.FilenameFilter;
 
-import io.realm.Realm;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 
@@ -48,14 +48,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NotificationsFragment mNotificationFragment;
     private NotificationsPresenter mNotificationPresenter;
 
-    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        realm = Realm.getDefaultInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -163,6 +161,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("\n" + "Perform Sync:\t" + sharedPrefs.getBoolean("perform_sync", false));
+        builder.append("\n" + "Sync Intervals:\t" + sharedPrefs.getString("sync_interval", "-1"));
+        builder.append("\n" + "Name:\t" + sharedPrefs.getString("full_name", "Not known to us"));
+        builder.append("\n" + "Email Address:\t" + sharedPrefs.getString("email_address", "No EMail Address Provided"));
+        builder.append("\n" + "Customized Notification Ringtone:\t" + sharedPrefs.getString("notification_ringtone", ""));
+        builder.append("\n\nClick on Settings Button at bottom right corner to Modify Your Prefrences");
+        builder.append("\n\nLeads JAUS:\t"+sharedPrefs.getBoolean("pref_notificacion_leads_de_sitio_web_jaus", false));
+
+        Log.d("Configuracion :", builder.toString());
+
 
     }
 
@@ -177,6 +188,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(!PreferenciasUsuario.get(this).isLoggedIn()){
                 startActivity(new Intent(this, LoginTPIActivity.class));
             }
+        }
+
+        if(id == R.id.nav_configuracion){
+            Intent modifySettings=new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(modifySettings);
         }
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

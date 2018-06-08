@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_cumpleaños_proximos_de_contactos"
+        android:title="@string/pref_cumpleaños_proximos_de_contactos"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_agenda_compromisos_y_tareas_del_dia"
+        android:title="@string/pref_agenda_compromisos_y_tareas_del_dia"/>
+
+</PreferenceScreen>

@@ -1,6 +1,7 @@
 package com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Realm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
@@ -30,7 +31,8 @@ public class RealmHelper {
         this.context = context;
         RealmConfiguration config = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build();
         realm = Realm.getInstance(config);
-        NotificacionId = getIdByTable(realm, Notificacion.class);
+
+        this.NotificacionId = getIdByTable(realm, Notificacion.class);
 
     }
 
@@ -47,6 +49,8 @@ public class RealmHelper {
         Date fecha;
         String url;
         String icono;
+        String categoria;
+        String subcategoria;
         String visto;
 
         ArrayList<Notificacion> data = new ArrayList<>();
@@ -63,8 +67,10 @@ public class RealmHelper {
                 url = realmResults.get(i).getUrl();
                 icono = realmResults.get(i).getIcono();
                 visto = realmResults.get(i).getVisto();
+                categoria = realmResults.get(i).getCategoria();
+                subcategoria = realmResults.get(i).getSubcategoria();
 
-                data.add( new Notificacion(titulo, descripcion,url,icono,fecha,visto));
+                data.add( new Notificacion(titulo, descripcion,url,icono,fecha,categoria,subcategoria,visto));
 
             }
         }
@@ -93,10 +99,14 @@ public class RealmHelper {
 
     }
 
-    public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo, String visto) {
+    public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo, String categoria, String subcategoria, String visto) {
         Notificacion data = new Notificacion();
+
+
+
         //data.setId(getCount() + 1);
-        data.setId(this.NotificacionId.getAndIncrement());
+        data.setId(this.NotificacionId.incrementAndGet());
+        //Log.d("IdInicio3: ","- "+this.NotificacionId.incrementAndGet());
         data.setTitulo(name);
         data.setDescripcion(descipcion);
         data.setUrl(url);
@@ -104,6 +114,8 @@ public class RealmHelper {
         data.setFecha(fecha);
         data.setIcono(logo);
         data.setVisto(visto);
+        data.setCategoria(categoria);
+        data.setSubcategoria(subcategoria);
 
 
         realm.beginTransaction();

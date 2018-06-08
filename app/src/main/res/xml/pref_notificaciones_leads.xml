@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_sitio_web_jaus"
+        android:title="@string/pref_leads_de_sitio_web_jaus" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_inmuebles24.com"
+        android:title="@string/pref_leads_de_inmuebles24.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_plusvalia.com"
+        android:title="@string/pref_leads_de_plusvalia.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_compreoalquile.com"
+        android:title="@string/pref_leads_de_compreoalquile.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_mercadolibre.com"
+        android:title="@string/pref_leads_de_mercadolibre.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_rentasyventas.com"
+        android:title="@string/pref_leads_de_rentasyventas.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_tucasaecuador.com"
+        android:title="@string/pref_leads_de_tucasaecuador.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_vivanuncios.mx"
+        android:title="@string/pref_leads_de_vivanuncios.mx"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_segundamano"
+        android:title="@string/pref_leads_de_segundamano"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_doomos.com"
+        android:title="@string/pref_leads_de_doomos.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_olx"
+        android:title="@string/pref_leads_de_olx"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_iwanti.mx"
+        android:title="@string/pref_leads_de_iwanti.mx"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_propiedades.com"
+        android:title="@string/pref_leads_de_propiedades.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_tuportalonline.com"
+        android:title="@string/pref_leads_de_tuportalonline.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_properati.com"
+        android:title="@string/pref_leads_de_properati.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_trovi.com"
+        android:title="@string/pref_leads_de_trovi.com"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_yakaz.com"
+        android:title="@string/pref_leads_de_yakaz.com"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_donkis.com.mx"
+        android:title="@string/pref_leads_de_donkis.com.mx"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_mitula.com.mx"
+        android:title="@string/pref_leads_de_mitula.com.mx"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_nuroa.com.mx"
+        android:title="@string/pref_leads_de_nuroa.com.mx"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_leads_de_divendo.mx"
+        android:title="@string/pref_leads_de_divendo.mx"/>
+
+</PreferenceScreen>

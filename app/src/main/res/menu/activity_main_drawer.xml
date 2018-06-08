@@ -7,27 +7,33 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_todos"
-            android:icon="@drawable/ic_bell"
+            android:icon="@drawable/ic_home"
             android:title="Todas las notificaciones">
 
         </item>
         <item
             android:id="@+id/nav_sistema"
             android:icon="@drawable/ic_bell"
-            android:title="Sistema">
+            android:title="Avisos del sistema">
 
         </item>
         <item
             android:id="@+id/nav_bolsa24siete"
-            android:icon="@drawable/ic_bell"
+            android:icon="@drawable/ic_bolsa24siete"
             android:title="Bolsa24Siete">
 
         </item>
         <item
             android:id="@+id/nav_agenda"
-            android:icon="@drawable/ic_bell"
-            android:title="Agenda">
+            android:icon="@drawable/ic_calendar_clock"
+            android:title="Leads">
 
+        </item>
+
+        <item
+            android:id="@+id/nav_otros"
+            android:icon="@drawable/ic_bell"
+            android:title="Otros">
         </item>
 
     </group>

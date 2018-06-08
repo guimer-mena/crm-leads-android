@@ -115,5 +115,134 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="title_activity_settings">Configuracion</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+
+
+    <!-- Strings Para Configuracion de Notificaciones -->
+    <string name="pref_cierre_operacion_inmueble_comunidad">Cierre de venta, renta o traspaso</string>
+    <string name="pref_usuario_suspendido_es_reactivado">Usuario suspendido es reactivado</string>
+    <string name="pref_usuario_suspendido_es_ignorado">Usuario suspendido es ignorado</string>
+    <string name="pref_usuario_notificar_suspension_usuario">Suspención de un usuario</string>
+    <string name="pref_usuario_notificar_suspension_usuario_supervisor" >Suspención de un usuario al adminiatrador</string>
+    <string name="pref_usuario_suspencion_por_limite_de_eliminaciones">Suspención de usuario por limite de eliminaciones</string>
+    <string name="pref_cliente_asignacion_de_contactos" >Asignación de contactos</string>
+    <string name="pref_cliente_reasignacion_de_contactos">Reasignación de contactos a otro asesor</string>
+    <string name="pref_cliente_eliminacion_de_contactos">Eliminación de contactos</string>
+    <string name="pref_inmueble_nuevo_notificar_posibles_interesados">Nuevo inmueble agragado con posibles interesados</string>
+    <string name="pref_inmueble_nuevo_espera_de_autorizacion">Nuevo inmueble con espera de autorización</string>
+    <string name="pref_inmueble_eliminacion_de_inmuebles">Inmueble eliminado</string>
+    <string name="pref_desarrollo_eliminacion_de_desarrollos">Eliminacion de desarrollos</string>
+    <string name="pref_listing_notificar_oportunidad_descartada">Oportunidad de listing descartada (Aplica cuando el usuario y el asesor son los mismos o este asignada a todos)</string>
+    <string name="pref_configuracion_cuenta_ampi_no_establecida">Configuracion de la cuenta AMPI seccional no establecida</string>
+    <string name="pref_listing_notificar_oprtunidad_descartada_a_usuario">Oportunidad de listing descartada(Aplica cuando el suauario es diferente al asesor)</string>
+    <string name="pref_contacto_inquilino_notifica_asesor_vence_renta_hoy">Vencimiento de una renta el dia de hoy</string>
+    <string name="pref_contacto_inquilino_notifica_asesor_renta_proxima_a_vencer">Renta proxima a vencer</string>
+    <string name="pref_inmueble_inquilino_notifica_asesor_vence_contrato_hoy">Vencimiento de contrado de un inmueble vence hoy</string>
+    <string name="pref_inmueble_inquilino_notifica_asesor_contrato_proximo_a_vencer">Vencimiento de contrato de in inmueble proximo a vencer</string>
+
+    <string name="pref_solicitud_de_alianza_empresa">Solicitud de alianza empresa</string>
+    <string name="pref_invitacion_de_alianza_de_grupo">Invitacion de alianza grupo</string>
+    <string name="pref_sugerencia_de_inmuebles">Sugerencia de inmuebles</string>
+    <string name="pref_nuevos_comentarios_sobre_inmueble_sugerido">Nuevos comentarios sobre inmueble sugerido</string>
+
+    <string name="pref_leads_de_sitio_web_jaus">Leads de sitio web JAUS</string>
+    <string name="pref_leads_de_inmuebles24.com">Leads de Inmuebles24.com</string>
+    <string name="pref_leads_de_plusvalia.com">Leads de adondeivir.com</string>
+    <string name="pref_leads_de_compreoalquile.com">Leads de compreoalquile.com</string>
+    <string name="pref_leads_de_mercadolibre.com">Leads de mercadolibre.com</string>
+    <string name="pref_leads_de_rentasyventas.com">Leads de rentasyventas.com</string>
+    <string name="pref_leads_de_tucasaecuador.com">Leads de tucasaecuador.com</string>
+    <string name="pref_leads_de_vivanuncios.mx">Leads de vivanuncios.mx</string>
+    <string name="pref_leads_de_segundamano">Leads de segundamano</string>
+    <string name="pref_leads_de_doomos.com">Leads de doomos.com</string>
+    <string name="pref_leads_de_olx">Leads de olx</string>
+    <string name="pref_leads_de_iwanti.mx">Leads de iwanti.mx</string>
+    <string name="pref_leads_de_propiedades.com">Leads de propiedades.com</string>
+    <string name="pref_leads_de_tuportalonline.com">Leads de tuportalonline.com</string>
+    <string name="pref_leads_de_properati.com">Leads de properati.com</string>
+    <string name="pref_leads_de_trovi.com">Leads de trovi.com</string>
+    <string name="pref_leads_de_yakaz.com">Leads de yakaz.com</string>
+    <string name="pref_leads_de_donkis.com.mx">Leads de donkis.com.mx</string>
+    <string name="pref_leads_de_mitula.com.mx">Leads de mitula.com.mx</string>
+    <string name="pref_leads_de_nuroa.com.mx">Leads de nuroa.com.mx</string>
+    <string name="pref_leads_de_divendo.mx">Leads de divendo.mx</string>
+
+    <string name="pref_cumpleaños_proximos_de_contactos">Cumpleaños proximos de contactos</string>
+    <string name="pref_agenda_compromisos_y_tareas_del_dia">Agenda compromisos y tareas del día</string>
+    <!--  Fin Strings Para Configuracion de Notificaciones -->
+
 </resources>
 

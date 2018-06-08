@@ -1,0 +1,123 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_cierre_operacion_inmueble_comunidad"
+        android:title="@string/pref_cierre_operacion_inmueble_comunidad" />
+
+
+    <!-- NOTE: This preference will be enabled only when the checkbox above is checked. -->
+    <!--<SwitchPreference
+        android:defaultValue="true"
+        android:dependency="notifications_new_message"
+        android:key="notifications_new_message_vibrate"
+        android:title="@string/pref_title_vibrate" />-->
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_usuario_suspendido_es_reactivado"
+        android:title="@string/pref_usuario_suspendido_es_reactivado"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_usuario_suspendido_es_ignorado"
+        android:title="@string/pref_usuario_suspendido_es_ignorado"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_usuario_notificar_suspension_usuario"
+        android:title="@string/pref_usuario_notificar_suspension_usuario"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_usuario_notificar_suspension_usuario_supervisor"
+        android:title="@string/pref_usuario_notificar_suspension_usuario_supervisor" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref__notificacion_usuario_suspencion_por_limite_de_eliminaciones"
+        android:title="@string/pref_usuario_suspencion_por_limite_de_eliminaciones" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_cliente_asignacion_de_contactos"
+        android:title="@string/pref_cliente_asignacion_de_contactos"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_cliente_reasignacion_de_contactos"
+        android:title="@string/pref_cliente_reasignacion_de_contactos"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_cliente_eliminacion_de_contactos"
+        android:title="@string/pref_cliente_eliminacion_de_contactos"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_inmueble_nuevo_notificar_posibles_interesados"
+        android:title="@string/pref_inmueble_nuevo_notificar_posibles_interesados"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_inmueble_nuevo_espera_de_autorizacion"
+        android:title="@string/pref_inmueble_nuevo_espera_de_autorizacion"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_inmueble_eliminacion_de_inmuebles"
+        android:title="@string/pref_inmueble_eliminacion_de_inmuebles"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_desarrollo_eliminacion_de_desarrollos"
+        android:title="@string/pref_desarrollo_eliminacion_de_desarrollos"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_listing_notificar_oportunidad_descartada"
+        android:title="@string/pref_listing_notificar_oportunidad_descartada"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_configuracion_cuenta_ampi_no_establecida"
+        android:title="@string/pref_configuracion_cuenta_ampi_no_establecida"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_listing_notificar_oprtunidad_descartada_a_usuario"
+        android:title="@string/pref_listing_notificar_oprtunidad_descartada_a_usuario"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_contacto_inquilino_notifica_asesor_vence_renta_hoy"
+        android:title="@string/pref_contacto_inquilino_notifica_asesor_vence_renta_hoy"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_contacto_inquilino_notifica_asesor_renta_proxima_a_vencer"
+        android:title="@string/pref_contacto_inquilino_notifica_asesor_renta_proxima_a_vencer"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_inmueble_inquilino_notifica_asesor_vence_contrato_hoy"
+        android:title="@string/pref_inmueble_inquilino_notifica_asesor_vence_contrato_hoy"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_inmueble_inquilino_notifica_asesor_contrato_proximo_a_vencer"
+        android:title="@string/pref_inmueble_inquilino_notifica_asesor_contrato_proximo_a_vencer"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_inmueble_inquilino_notifica_asesor_vence_contrato_hoy"
+        android:title="@string/pref_inmueble_inquilino_notifica_asesor_vence_contrato_hoy"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_notificacion_inmueble_inquilino_notifica_asesor_contrato_proximo_a_vencer"
+        android:title="@string/pref_inmueble_inquilino_notifica_asesor_contrato_proximo_a_vencer"/>
+
+
+</PreferenceScreen>
