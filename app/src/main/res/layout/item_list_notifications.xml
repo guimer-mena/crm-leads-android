@@ -33,7 +33,7 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             app:srcCompat="@mipmap/ico_crm_color"
-            />
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -90,19 +90,22 @@
             android:layout_below="@+id/tv_expiry_date"
             android:layout_toRightOf="@+id/tv_image"
             android:gravity="center">
+
             <Button
                 android:id="@+id/buttonReagendar"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_below="@+id/tv_expiry_date"
                 android:layout_toRightOf="@+id/buttonCerrar"
+                android:drawableTint="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_reagendar"
                 android:text="Reagendar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/colorPrimary"
                 android:textSize="13dp"
-                android:layout_alignParentRight="true"
-                />
+                tools:visibility="gone"/>
             <Button
                 android:id="@+id/buttonFinalizar"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -112,24 +115,37 @@
                 android:layout_toRightOf="@+id/buttonReagendar"
                 android:text="Finalizar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/colorPrimary"
                 android:textSize="13dp"
                 android:layout_alignParentRight="true"
+                android:drawableLeft="@drawable/ic_finalizar"
+                android:drawableTint="@color/colorPrimary"
+                tools:visibility="gone"
                 />
         </LinearLayout>
-        <Button
-            android:id="@+id/buttonVerMas"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutBotonAgenda"
             android:layout_toRightOf="@+id/tv_image"
-            android:text="Ver más"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="?attr/colorPrimary"
-            android:textSize="13dp"
-            android:layout_alignParentRight="true"
-            />
+            android:gravity="center">
+            <Button
+                android:id="@+id/buttonVerMas"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Ver más"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13dp"
+                android:layout_alignParentRight="true"
+                android:drawableTint="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_share"
+                android:drawablePadding="10dp"
+                />
+        </LinearLayout>
+
 
 
 

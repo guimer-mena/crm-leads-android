@@ -52,6 +52,8 @@ public class RealmHelper {
         String categoria;
         String subcategoria;
         String visto;
+        String urlReagendar;
+        String urlFinalizar;
 
         ArrayList<Notificacion> data = new ArrayList<>();
 
@@ -69,8 +71,11 @@ public class RealmHelper {
                 visto = realmResults.get(i).getVisto();
                 categoria = realmResults.get(i).getCategoria();
                 subcategoria = realmResults.get(i).getSubcategoria();
+                urlFinalizar = realmResults.get(i).getUrlFinalizar();
+                urlReagendar = realmResults.get(i).getUrlReagendar();
 
-                data.add( new Notificacion(titulo, descripcion,url,icono,fecha,categoria,subcategoria,visto));
+
+                data.add( new Notificacion(titulo, descripcion,url,icono,fecha,categoria,subcategoria,urlReagendar,urlFinalizar,visto));
 
             }
         }
@@ -99,7 +104,7 @@ public class RealmHelper {
 
     }
 
-    public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo, String categoria, String subcategoria, String visto) {
+    public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo, String categoria, String subcategoria, String urlReagendar, String urlFinaliar, String visto) {
         Notificacion data = new Notificacion();
 
 
@@ -116,6 +121,8 @@ public class RealmHelper {
         data.setVisto(visto);
         data.setCategoria(categoria);
         data.setSubcategoria(subcategoria);
+        data.setUrlFinalizar(urlFinaliar);
+        data.setUrlReagendar(urlReagendar);
 
 
         realm.beginTransaction();

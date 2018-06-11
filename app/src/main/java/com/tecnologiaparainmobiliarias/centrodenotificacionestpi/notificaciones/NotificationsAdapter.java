@@ -60,7 +60,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         //holder.expiryDate.setText(String.format(newNotification.getFecha()));
         //holder.expiryDate.setText(newNotification.getFecha());
         //Log.d("Fecha",newNotification.getFecha().toString());
-        holder.bind(newNotification.getTitulo(),newNotification.getDescripcion(),newNotification.getFecha(),newNotification.getUrl(), newNotification.getIcono(), itemClickListener);
+        holder.bind(newNotification.getTitulo(),newNotification.getDescripcion(),newNotification.getFecha(),newNotification.getUrl(), newNotification.getIcono(),newNotification.getCategoria(),newNotification.getSubcategoria(), itemClickListener);
         //holder.bind(pushNotifications.get(position).getTitulo(),pushNotifications.get(position).getDescripcion(),String.format(pushNotifications.get(position).getFecha()),pushNotifications.get(position).getUrl(), itemClickListener);
     }
 
@@ -91,6 +91,8 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         public ImageView iconoView;
 
         public Button verMas;
+        public Button btnFinalizar;
+        public Button btnReagendar;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -102,14 +104,18 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             iconoView = (ImageView) itemView.findViewById(R.id.tv_image);
 
             verMas = (Button) itemView.findViewById(R.id.buttonVerMas);
+            btnFinalizar = (Button) itemView.findViewById(R.id.buttonFinalizar);
+            btnReagendar = (Button) itemView.findViewById(R.id.buttonReagendar);
         }
 
-        public void bind(final String titulo, final String descripcion, final Date fecha, final String url, final String icono, final OnItemClickListener listener){
+        public void bind(final String titulo, final String descripcion, final Date fecha, final String url, final String icono, final String categoria, final String subcategoria, final OnItemClickListener listener){
             this.title.setText(titulo);
             this.description.setText(descripcion);
             //this.expiryDate.setText(fecha.toString());
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             String fechaM = format.format(fecha);
+            //Log.d("TipoNotificacion", "-"+categoria);
+
             this.expiryDate.setText(fechaM);
             if(icono != null){
 
@@ -129,6 +135,35 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                     listener.onItemClick(url, getAdapterPosition());
                 }
             });
+
+            if (categoria.equals("OTROS")){
+                btnReagendar.setVisibility(View.GONE);
+                btnFinalizar.setVisibility(View.GONE);
+                if(subcategoria.equals("agenda_compromisos_y_tareas_del_dia")){
+
+                    if(url != ""){
+                        btnReagendar.setVisibility(View.VISIBLE);
+                        btnReagendar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                listener.onItemClick(url,getAdapterPosition());
+                            }
+                        });
+                    }
+                    if (url != ""){
+                        btnFinalizar.setVisibility(View.VISIBLE);
+                        btnFinalizar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                listener.onItemClick(url,getAdapterPosition());
+                            }
+                        });
+                    }
+                }
+            }else{
+                btnFinalizar.setVisibility(View.GONE);
+                btnReagendar.setVisibility(View.GONE);
+            }
         }
     }
 

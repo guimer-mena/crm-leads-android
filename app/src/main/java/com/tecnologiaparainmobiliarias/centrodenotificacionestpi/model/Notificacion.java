@@ -21,10 +21,12 @@ public class Notificacion  extends RealmObject{
     private String Categoria;
     private String Subcategoria;
     private String Visto;
+    private String UrlReagendar;
+    private String UrlFinalizar;
 
     public Notificacion(){}
 
-    public Notificacion(String titulo,String descripcion, String url, String logo, Date fecha, String categoria, String subcategoria, String visto) {
+    public Notificacion(String titulo,String descripcion, String url, String logo, Date fecha, String categoria, String subcategoria,String urlreagendar, String urlfinalizar, String visto) {
     //public Notificacion(String titulo) {
         Id = RealmHelper.NotificacionId.incrementAndGet();
         Titulo = titulo;
@@ -36,6 +38,8 @@ public class Notificacion  extends RealmObject{
         Visto = visto;
         Categoria = categoria;
         Subcategoria = subcategoria;
+        UrlFinalizar = urlfinalizar;
+        UrlReagendar = urlreagendar;
 
     }
 
@@ -113,6 +117,20 @@ public class Notificacion  extends RealmObject{
 
     public void setSubcategoria(String subcategoria){
         Subcategoria = subcategoria;
+    }
+
+    public String getUrlReagendar(){
+        return  UrlReagendar;
+    }
+    public void setUrlReagendar(String urlreagendar){
+        UrlReagendar = urlreagendar;
+    }
+
+    public String getUrlFinalizar(){
+        return UrlFinalizar;
+    }
+    public void setUrlFinalizar(String urlFinalizar){
+        UrlFinalizar = urlFinalizar;
     }
 
 }

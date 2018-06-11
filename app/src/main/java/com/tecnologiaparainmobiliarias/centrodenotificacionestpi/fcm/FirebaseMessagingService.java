@@ -77,7 +77,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             //Log.d("FECHA",e.toString());
         }
         //Log.d(TAG,"FROM: "+realmHelper.NotificacionId.getAndIncrement());
-        realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"), remoteMessage.getData().get("categoria"), remoteMessage.getData().get("subcategoria"),"NO");
+        realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"), remoteMessage.getData().get("categoria"), remoteMessage.getData().get("subcategoria"), remoteMessage.getData().get("url_reagendar"), remoteMessage.getData().get("url_finalizar"),"NO");
     }
 
     private void sendNewPromoBroadcast(RemoteMessage remoteMessage) {
@@ -91,6 +91,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         intent.putExtra("logo", remoteMessage.getData().get("icono"));
         intent.putExtra("categotia", remoteMessage.getData().get("categoria"));
         intent.putExtra("subcategoria", remoteMessage.getData().get("subcategoria"));
+        intent.putExtra("url_reagendar", remoteMessage.getData().get("url_reagendar"));
+        intent.putExtra("url_finalizar", remoteMessage.getData().get("url_finalizar"));
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .sendBroadcast(intent);
     }
@@ -126,16 +128,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             notificationBuilder.setLargeIcon(bmp);
         }
 
-        /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            notificationBuilder.setColor(Color.GREEN);
-        }*/
-
-        /*if(data.get("icono") != ""){
-            notificationBuilder.setLargeIcon();
-        }
-        if(data.get("url") != ""){
-
-        }*/
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
