@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.MainActivity;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotification;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotificationsRepository;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
@@ -27,6 +28,8 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
     private final FirebaseMessaging mFCMInteractor;
     private Realm realm;
 
+    public  String Filtro = "todos";
+
     private RealmHelper realmHelper;
 
     public NotificationsPresenter(NotificationsContract.View mNotificationView, FirebaseMessaging mFCMInteractor, Context context) {
@@ -40,16 +43,16 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
     @Override
     public void start() {
         registerAppClient();
-        loadNotifications();
+        loadNotifications(Filtro);
     }
 
     @Override
     public void registerAppClient() {
-        mFCMInteractor.subscribeToTopic("promos");
+        mFCMInteractor.subscribeToTopic("notificaciones");
     }
 
     @Override
-    public void loadNotifications() {
+    public void loadNotifications(String filtro) {
 
         /*PushNotificationsRepository.getInstance().getPushNotifications(new PushNotificationsRepository.LoadCallback() {
             @Override
@@ -64,9 +67,11 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
             }
         });*/
 
+
+
         realmHelper.EliminarUnMes();
 
-        ArrayList<Notificacion> notifications = showData();
+        ArrayList<Notificacion> notifications = showData(filtro);
 
 
 
@@ -83,7 +88,7 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
     }
 
     @Override
-    public void savePushMessage(String title, String description, Date expireDate, String url, String logo) {
+    public void savePushMessage(String title, String description, Date expireDate, String url, String logo, String categoria, String subcategoria, String url_reagendar, String url_finalizar) {
         Notificacion pushMessage = new Notificacion();
         pushMessage.setTitulo(title);
         pushMessage.setDescripcion(description);
@@ -91,6 +96,10 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
         pushMessage.setIcono(logo);
         pushMessage.setUrl(url);
         //pushNotification.setId();
+        pushMessage.setCategoria(categoria);
+        pushMessage.setSubcategoria(subcategoria);
+        pushMessage.setUrlReagendar(url_reagendar);
+        pushMessage.setUrlFinalizar(url_finalizar);
 
         PushNotificationsRepository.getInstance().savePushNotification(pushMessage);
 
@@ -101,9 +110,9 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
     }
 
     @Override
-    public ArrayList<Notificacion> showData() {
+    public ArrayList<Notificacion> showData(String filtro) {
         ArrayList<Notificacion> resp = new ArrayList<Notificacion>();
-        resp = realmHelper.showAllNotifications();
+        resp = realmHelper.showNotifications(filtro);
         /*Log.d("obtenidoss", "- "+resp.size());
         for (int i = 0; i < resp.size(); i++)
         {

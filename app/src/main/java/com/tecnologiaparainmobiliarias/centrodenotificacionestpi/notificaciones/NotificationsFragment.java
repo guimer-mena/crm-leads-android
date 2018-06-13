@@ -44,6 +44,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NotificationsFragment extends Fragment implements NotificationsContract.View {
 
     public static final String ACTION_NOTIFY_NEW_NOTIFY = "NEW_NOTIFY";
+
+    public String Filtro = "todos";
+
     private BroadcastReceiver mNotificacionReceiver;
 
     private RecyclerView mRecyclerView;
@@ -96,9 +99,12 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                 }
                 String url = intent.getStringExtra("url");
                 String logo = intent.getStringExtra("logo");
-                //Log.d("URLNOTIFICACION", "- "+url);
-                //Log.d("URLNOTIFICACION", "- "+logo+" - "+descripcion+" - "+fecha+" - "+url+" - "+titulo+" - ");
-                mPresenter.savePushMessage(titulo,descripcion,fecha,url,logo);
+                String categoria = intent.getStringExtra("categoria");
+                String subcategoria = intent.getStringExtra("subcategoria");
+                String url_reagendar = intent.getStringExtra("url_reagendar");
+                String url_finalizar = intent.getStringExtra("url_finalizar");
+
+                mPresenter.savePushMessage(titulo,descripcion,fecha,url,logo, categoria, subcategoria, url_reagendar, url_finalizar);
             }
         };
     }
@@ -113,7 +119,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
         mNotificationAdapter = new NotificationsAdapter(getActivity().getApplicationContext(), new NotificationsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String url, int position) {
-                //Toast.makeText( getActivity() , url +" - "+ position, Toast.LENGTH_LONG).show();
+
                 if(url != null && !url.isEmpty()){
 
                     final SharedPreferences mPref = getActivity().getSharedPreferences("USER_CRM", Context.MODE_PRIVATE);
@@ -158,7 +164,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                 }
             }
 
-        }, mPresenter.showData());
+        }, mPresenter.showData("todos"));
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv_notifications_list);
         mNoMessagesView = (LinearLayout) root.findViewById(R.id.noMessages);
         mRecyclerView.setAdapter(mNotificationAdapter);

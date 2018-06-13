@@ -13,7 +13,7 @@
         </item>
         <item
             android:id="@+id/nav_sistema"
-            android:icon="@drawable/ic_bell"
+            android:icon="@drawable/ic_notificacion_sistema"
             android:title="Avisos del sistema">
 
         </item>
@@ -24,8 +24,8 @@
 
         </item>
         <item
-            android:id="@+id/nav_agenda"
-            android:icon="@drawable/ic_calendar_clock"
+            android:id="@+id/nav_leads"
+            android:icon="@drawable/ic_leads"
             android:title="Leads">
 
         </item>

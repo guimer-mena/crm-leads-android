@@ -16,6 +16,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private NotificationsFragment mNotificationFragment;
     private NotificationsPresenter mNotificationPresenter;
+    private NavigationView navigationView;
 
 
     @Override
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.getMenu().getItem(0).setChecked(true);
 
         //Mostrar notificaciones
         mNotificationFragment = (NotificationsFragment) getSupportFragmentManager().findFragmentById(R.id.notifications_container);
@@ -79,31 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNotificationPresenter = new NotificationsPresenter(mNotificationFragment, FirebaseMessaging.getInstance(),getApplicationContext());
 
-        //Asignar informacion del usuario al menu laterar
-
-        //extraer el drawable en un bitmap
-        //Drawable originalDrawable = getResources().getDrawable(R.drawable.side_nav_bar);
-        //Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
-        //Creamos el drawable redondeado
-        //RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), originalBitmap );
-        //Asignamos el CornerRadius
-        //roundedBitmapDrawable.setCornerRadius(originalBitmap.getHeight());
 
         Bitmap avatarBitmap = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_user_no_photo);
 
-        //Drawable drawable;
-        //Bitmap avatarBitmap = ((BitmapDrawable)drawable ).getBitmap();
-        /*Bitmap avatarBitmap;
-        BitmapFactory.Options options;
-        try{
-            avatarBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.side_nav_bar);
 
-        }catch (OutOfMemoryError e){
-            options = new BitmapFactory.Options();
-            options.inSampleSize = 2;
-
-            avatarBitmap = BitmapFactory.decodeFile(R.drawable);
-        }*/
         Bitmap croppedImage = ImageHelper.cropBitmapToSquare(avatarBitmap);
 
         Bitmap redondearContornoAvatar = ImageHelper.getRoundedCornerBitmap(croppedImage, 1000);
@@ -115,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String fotoUsuario = mPref.getString("PREF_FOTO", null);
         String logoEmpresa = mPref.getString("PREF_LOGO_EMPRESA", null);
         String nombreEmpresa = mPref.getString("PREF_NOMBRE_EMPRESA", null);
-        Log.d("NombreEmpresa", "dd"+nombreEmpresa);
+
 
 
         TextView txtNombreUsuario;
@@ -144,20 +125,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Picasso.with(this).load(logoEmpresa).resize(400, 400).transform(new CropCircleTransformation()).centerCrop().into(imgLogoEmpresa);
         }
-        //txtNombreEmpresa.setText(nombreEmpresa);
-        //txtNombreEmpresa.setText("");
-        toolbar.setTitle(nombreEmpresa);
-        //toolbar.setSubtitle("Notificaciones");
 
+        toolbar.setTitle(nombreEmpresa);
 
 
         txtNombreUsuario.setText(nombreUsuario.toString());
         txtCorreoUsuario.setText(correo.toString());
-        //imgAvatar.setImageBitmap(redondearContornoAvatar);
+
 
         CollapsingToolbarLayout collapser = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapser.setTitle(nombreEmpresa);
-        //toolbar.setSubtitle("Notificaciones");
 
 
 
@@ -195,9 +172,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(modifySettings);
         }
 
+
+        //Filtros de notificaciones
+        if(id == R.id.nav_todos){
+            mNotificationPresenter.Filtro = "todos";
+            mNotificationPresenter.loadNotifications("todos");
+        }
+
+        if(id == R.id.nav_bolsa24siete){
+            mNotificationPresenter.Filtro = "bolsa24siete";
+            mNotificationPresenter.loadNotifications("bolsa24siete");
+        }
+
+        if(id == R.id.nav_leads){
+            mNotificationPresenter.Filtro = "leads";
+            mNotificationPresenter.loadNotifications("leads");
+        }
+
+        if(id == R.id.nav_sistema){
+            mNotificationPresenter.Filtro = "sistema";
+            mNotificationPresenter.loadNotifications("sistema");
+        }
+
+        if (id == R.id.nav_otros) {
+            mNotificationPresenter.Filtro = "otros";
+            mNotificationPresenter.loadNotifications("otros");
+        }
+
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
+
 }

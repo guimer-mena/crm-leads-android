@@ -50,17 +50,12 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
     @Override
     public void onBindViewHolder(NotificationsAdapter.ViewHolder holder, int position) {
-        //PushNotification newNotification = pushNotifications.get(position);
+
         Notificacion newNotification = pushNotifications.get(position);
 
-        //Log.d("bindHolder", "-"+pushNotifications.get(position).getTitulo()+pushNotifications.get(position).getDescripcion()+String.format(pushNotifications.get(position).getFecha())+pushNotifications.get(position).getUrl()+ pushNotifications.get(position).getIcono());
-
-        //holder.title.setText(newNotification.getTitulo());
-        //holder.description.setText(newNotification.getDescripcion());
-        //holder.expiryDate.setText(String.format(newNotification.getFecha()));
         //holder.expiryDate.setText(newNotification.getFecha());
-        //Log.d("Fecha",newNotification.getFecha().toString());
-        holder.bind(newNotification.getTitulo(),newNotification.getDescripcion(),newNotification.getFecha(),newNotification.getUrl(), newNotification.getIcono(),newNotification.getCategoria(),newNotification.getSubcategoria(), itemClickListener);
+
+        holder.bind(newNotification.getTitulo(),newNotification.getDescripcion(),newNotification.getFecha(),newNotification.getUrl(), newNotification.getIcono(),newNotification.getCategoria(),newNotification.getSubcategoria(), newNotification.getUrlReagendar(),newNotification.getUrlFinalizar(), itemClickListener);
         //holder.bind(pushNotifications.get(position).getTitulo(),pushNotifications.get(position).getDescripcion(),String.format(pushNotifications.get(position).getFecha()),pushNotifications.get(position).getUrl(), itemClickListener);
     }
 
@@ -108,13 +103,13 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             btnReagendar = (Button) itemView.findViewById(R.id.buttonReagendar);
         }
 
-        public void bind(final String titulo, final String descripcion, final Date fecha, final String url, final String icono, final String categoria, final String subcategoria, final OnItemClickListener listener){
+        public void bind(final String titulo, final String descripcion, final Date fecha, final String url, final String icono, final String categoria, final String subcategoria, final String url_reagendar, final String url_finalizar, final OnItemClickListener listener){
             this.title.setText(titulo);
             this.description.setText(descripcion);
             //this.expiryDate.setText(fecha.toString());
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             String fechaM = format.format(fecha);
-            //Log.d("TipoNotificacion", "-"+categoria);
+
 
             this.expiryDate.setText(fechaM);
             if(icono != null){
@@ -136,31 +131,38 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                 }
             });
 
-            if (categoria.equals("OTROS")){
+
+
+            if(categoria.equals("OTROS")){
+
                 btnReagendar.setVisibility(View.GONE);
                 btnFinalizar.setVisibility(View.GONE);
+
                 if(subcategoria.equals("agenda_compromisos_y_tareas_del_dia")){
 
-                    if(url != ""){
+                    if(url_reagendar != null){
+
                         btnReagendar.setVisibility(View.VISIBLE);
                         btnReagendar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                listener.onItemClick(url,getAdapterPosition());
+                                listener.onItemClick(url_reagendar,getAdapterPosition());
                             }
                         });
                     }
-                    if (url != ""){
+                    if (url_finalizar != null){
+
                         btnFinalizar.setVisibility(View.VISIBLE);
                         btnFinalizar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                listener.onItemClick(url,getAdapterPosition());
+                                listener.onItemClick(url_finalizar,getAdapterPosition());
                             }
                         });
                     }
                 }
             }else{
+
                 btnFinalizar.setVisibility(View.GONE);
                 btnReagendar.setVisibility(View.GONE);
             }

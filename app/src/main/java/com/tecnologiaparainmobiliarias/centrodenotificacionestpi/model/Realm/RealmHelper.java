@@ -83,6 +83,76 @@ public class RealmHelper {
         return data;
     }
 
+    public ArrayList<Notificacion> showNotifications(String filtro){
+        int id;
+        String titulo;
+        String descripcion;
+        Date fecha;
+        String url;
+        String icono;
+        String categoria;
+        String subcategoria;
+        String visto;
+        String urlReagendar;
+        String urlFinalizar;
+
+        String filtroQuery = "";
+
+        switch (filtro){
+            case "todos":
+                filtroQuery = "TODOS";
+                break;
+            case "sistema":
+                filtroQuery = "AVISOS_DEL_SISTEMA";
+                break;
+            case "leads":
+                filtroQuery = "LEADS";
+                break;
+            case "bolsa24siete":
+                filtroQuery = "BOLSA24SIETE";
+                break;
+            case "otros":
+                filtroQuery = "OTROS";
+                break;
+            default:
+                filtroQuery = "TODOS";
+                break;
+        }
+
+
+        ArrayList<Notificacion> data = new ArrayList<>();
+
+        if(filtroQuery.equals("TODOS")) {
+            realmResults = realm.where(Notificacion.class).findAll();
+        }else {
+            realmResults = realm.where(Notificacion.class).equalTo("Categoria",filtroQuery).findAll();
+        }
+
+        realmResults = realmResults.sort("Id", Sort.DESCENDING);
+
+        if(realmResults.size() > 0){
+            for (int i = 0; i < realmResults.size(); i++){
+                //Log.d("IdNotificacion"+i, ". "+realmResults.get(i).getId());
+                titulo = realmResults.get(i).getTitulo();
+                descripcion = realmResults.get(i).getDescripcion();
+                fecha = realmResults.get(i).getFecha();
+                url = realmResults.get(i).getUrl();
+                icono = realmResults.get(i).getIcono();
+                visto = realmResults.get(i).getVisto();
+                categoria = realmResults.get(i).getCategoria();
+                subcategoria = realmResults.get(i).getSubcategoria();
+                urlFinalizar = realmResults.get(i).getUrlFinalizar();
+                urlReagendar = realmResults.get(i).getUrlReagendar();
+
+
+                data.add( new Notificacion(titulo, descripcion,url,icono,fecha,categoria,subcategoria,urlReagendar,urlFinalizar,visto));
+
+            }
+        }
+
+        return data;
+    }
+
     public void EliminarUnMes(){
         //Obtenemos fecha actual
         Date fechaActual = new Date();

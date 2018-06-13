@@ -52,7 +52,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //Log.d("MensajeRecibido:");
         if(remoteMessage.getData().get("categoria").toString() != ""){
             Boolean Mostrar = true;
             String clave = remoteMessage.getData().get("subcategoria").toString();
@@ -74,9 +73,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         } catch (ParseException e) {
             e.printStackTrace();
-            //Log.d("FECHA",e.toString());
         }
-        //Log.d(TAG,"FROM: "+realmHelper.NotificacionId.getAndIncrement());
+
         realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"), remoteMessage.getData().get("categoria"), remoteMessage.getData().get("subcategoria"), remoteMessage.getData().get("url_reagendar"), remoteMessage.getData().get("url_finalizar"),"NO");
     }
 
@@ -84,12 +82,13 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         Intent intent = new Intent(NotificationsFragment.ACTION_NOTIFY_NEW_NOTIFY);
         //intent.putExtra("titulo", remoteMessage.getNotification().getTitle());
         //intent.putExtra("descripcion", remoteMessage.getNotification().getBody());
+
         intent.putExtra("titulo", remoteMessage.getData().get("title"));
         intent.putExtra("descripcion", remoteMessage.getData().get("body"));
         intent.putExtra("fecha", remoteMessage.getData().get("fecha"));
         intent.putExtra( "url", remoteMessage.getData().get("url"));
         intent.putExtra("logo", remoteMessage.getData().get("icono"));
-        intent.putExtra("categotia", remoteMessage.getData().get("categoria"));
+        intent.putExtra("categoria", remoteMessage.getData().get("categoria"));
         intent.putExtra("subcategoria", remoteMessage.getData().get("subcategoria"));
         intent.putExtra("url_reagendar", remoteMessage.getData().get("url_reagendar"));
         intent.putExtra("url_finalizar", remoteMessage.getData().get("url_finalizar"));
