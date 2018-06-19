@@ -16,7 +16,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/contentDetalle">
 
         <!--<TextView
             android:id="@+id/tv_discount"
@@ -88,7 +89,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_expiry_date"
-            android:layout_toRightOf="@+id/tv_image"
             android:gravity="center">
 
             <Button
@@ -122,19 +122,12 @@
                 android:drawableTint="@color/colorPrimary"
                 tools:visibility="gone"
                 />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutBotonAgenda"
-            android:layout_toRightOf="@+id/tv_image"
-            android:gravity="center">
+
             <Button
                 android:id="@+id/buttonVerMas"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="Ver más"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textColor="@color/colorPrimary"
@@ -145,9 +138,32 @@
                 android:drawablePadding="10dp"
                 />
         </LinearLayout>
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutBotonAgenda"
+            android:layout_toRightOf="@+id/tv_image"
+            android:gravity="center">
+            <Button
+                android:id="@+id/buttonVerMas"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver más"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13dp"
+                android:layout_alignParentRight="true"
+                android:drawableTint="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_share"
+                android:drawablePadding="10dp"
+                />
+        </LinearLayout>-->
 
 
 
 
     </RelativeLayout>
+
+
 </android.support.v7.widget.CardView>

@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -166,7 +167,7 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
         // Store values at the time of the login attempt.
         String user = mUserView.getText().toString();
         final String cuenta = mCuentaView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        final String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -224,11 +225,11 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
                             ApiError apiError = ApiError.fromResponseBody(response.errorBody());
 
                             error = apiError.getEstado();
-                            Log.d("LoginTPIActivity",apiError.getEstado());
+                            //Log.d("LoginTPIActivity",apiError.getEstado());
                         }else{
                             error = response.message();
                         }
-                        Log.d("ERROR_RETROFIT", error);
+                        //Log.d("ERROR_RETROFIT", error);
                         showLoginError(error);
                         return;
                     }
@@ -239,6 +240,8 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
                     if(EstadoSession.equals("SESSION_AUTORIZADA") && response.body().getClave_session() != null){
                         Toast.makeText(LoginTPIActivity.this,"Sesion Iniciada", Toast.LENGTH_LONG).show();
 
+                        response.body().setPassword(password);
+
                         //Guardar preferencias de usuario
                         PreferenciasUsuario.get(LoginTPIActivity.this).guardarUsuario(response.body());
 
@@ -246,7 +249,7 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
                         String fcmToken = FirebaseInstanceId.getInstance().getToken();
                         String iddispositivo = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
-                        Log.d("DATA_TOKEN", "data: "+cuenta+"-"+response.body().getId()+"-"+fcmToken+"-"+response.body().getClave_session()+"-ANDROID-"+iddispositivo);
+                        //Log.d("DATA_TOKEN", "data: "+cuenta+"-"+response.body().getId()+"-"+fcmToken+"-"+response.body().getClave_session()+"-ANDROID-"+iddispositivo);
 
                         Call<ActualizarToken> registrarToken = mCrmApi.actualizarToken(cuenta, response.body().getId().toString(),fcmToken,response.body().getClave_session().toString(),"ANDROID",iddispositivo);
 
@@ -259,11 +262,11 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
                                         ApiError apiError = ApiError.fromResponseBody(responseT.errorBody());
 
                                         error = apiError.getEstado();
-                                        Log.d("LoginCRMActivity",apiError.getEstado());
+                                        //Log.d("LoginCRMActivity",apiError.getEstado());
                                     }else{
                                         error = responseT.message();
                                     }
-                                    Log.d("ERROR_RETROFIT",error);
+                                    //Log.d("ERROR_RETROFIT",error);
                                 }
                             }
 
@@ -275,8 +278,22 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
 
                         showAppointmentsScreen();
                     }else{
-                        Toast.makeText(LoginTPIActivity.this,"Ocurrio un error al iniciar sesion, intente de nuevo.",Toast.LENGTH_LONG).show();
-                        return;
+
+                        if(EstadoSession.equals("ERROR_CUENTA_USUARIO_SUSPENDIDA")){
+
+                            showDialogMessageSimple("Su cuenta de susario se encuentra actualmente suspendida, contacte con su administrador para resolver el problema.");
+
+                        }else if(EstadoSession.equals("ERROR_NO_MOVIL")){
+
+                            showDialogMessageSimple("Su cuenta es incompatible con esta versión de la aplicación.");
+
+                        }else if(EstadoSession.equals("ERROR_DATOS_INCORRECTOS")){
+                            showDialogMessageSimple("Los datos de acceso no son correctos, verifique y vuelva a intentar.");
+                        }else{
+                            Toast.makeText(LoginTPIActivity.this,"Ocurrio un error al iniciar sesion, intente de nuevo.",Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
                     }
 
 
@@ -325,6 +342,8 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
                     mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });
+
+
         } else {
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
@@ -366,6 +385,17 @@ public class LoginTPIActivity extends AppCompatActivity implements LoaderCallbac
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnected();
+    }
+
+    private void showDialogMessageSimple(String mensaje){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Importante");
+        builder.setMessage(mensaje);
+        builder.setPositiveButton("Aceptar",null);
+        builder.create();
+        builder.show();
+
     }
 }
 

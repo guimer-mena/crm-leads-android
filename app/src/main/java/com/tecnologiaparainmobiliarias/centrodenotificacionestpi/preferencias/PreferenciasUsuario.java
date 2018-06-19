@@ -21,9 +21,10 @@ public class PreferenciasUsuario {
     public static final String PREF_USER_CLAVE_SESION = "PREF_CLAVE_SESION";
     public static final String PREF_USER_FOTO = "PREF_FOTO";
     public static final String PREF_USER_NOMBRE = "PREF_NOMBRE";
-    public static final String PREF_USAR_CORREO = "PREF_CORREO";
+    public static final String PREF_USER_CORREO = "PREF_CORREO";
     public static final String PREF_USER_LOGO_EMPRESA = "PREF_LOGO_EMPRESA";
     public static final String PREF_USER_NOMBRE_EMPRESA = "PREF_NOMBRE_EMPRESA";
+    public static final String PREF_USER_PASSWORD = "PREF_PASWORD";
 
     private final SharedPreferences mPrefs;
 
@@ -56,7 +57,7 @@ public class PreferenciasUsuario {
             editor.putString(PREF_USER_CUENTA, usuario.getCuenta());
             editor.putString(PREF_USER_NOMBRE, usuario.getNombre());
             editor.putString(PREF_USER_FOTO, usuario.getFoto());
-            editor.putString(PREF_USAR_CORREO, usuario.getCorreo());
+            editor.putString(PREF_USER_CORREO, usuario.getCorreo());
             editor.putString(PREF_USER_LOGO_EMPRESA, usuario.getLogo_empresa());
             editor.putString(PREF_USER_NOMBRE_EMPRESA, usuario.getNombre_empresa());
 
@@ -75,7 +76,7 @@ public class PreferenciasUsuario {
         editor.putString(PREF_USER_CUENTA, null);
         editor.putString(PREF_USER_NOMBRE, null);
         editor.putString(PREF_USER_FOTO, null);
-        editor.putString(PREF_USAR_CORREO, null);
+        editor.putString(PREF_USER_CORREO, null);
         editor.putString(PREF_USER_NOMBRE_EMPRESA, null);
         editor.putString(PREF_USER_LOGO_EMPRESA, null);
 
