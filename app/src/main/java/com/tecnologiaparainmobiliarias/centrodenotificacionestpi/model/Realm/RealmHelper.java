@@ -133,6 +133,7 @@ public class RealmHelper {
         if(realmResults.size() > 0){
             for (int i = 0; i < realmResults.size(); i++){
                 //Log.d("IdNotificacion"+i, ". "+realmResults.get(i).getId());
+                id = realmResults.get(i).getId();
                 titulo = realmResults.get(i).getTitulo();
                 descripcion = realmResults.get(i).getDescripcion();
                 fecha = realmResults.get(i).getFecha();
@@ -144,13 +145,23 @@ public class RealmHelper {
                 urlFinalizar = realmResults.get(i).getUrlFinalizar();
                 urlReagendar = realmResults.get(i).getUrlReagendar();
 
+                Notificacion not = new Notificacion(titulo, descripcion,url,icono,fecha,categoria,subcategoria,urlReagendar,urlFinalizar,visto);
 
-                data.add( new Notificacion(titulo, descripcion,url,icono,fecha,categoria,subcategoria,urlReagendar,urlFinalizar,visto));
+                not.setId(id);
+
+                data.add( not);
 
             }
         }
 
         return data;
+    }
+
+    public int obtenerUltimoId(){
+
+        Number id = realm.where(Notificacion.class).max("Id");
+
+        return id.intValue();
     }
 
     public void EliminarUnMes(){
@@ -177,8 +188,6 @@ public class RealmHelper {
     public void addNewNotification(String name, String descipcion, Date fecha, String url, String logo, String categoria, String subcategoria, String urlReagendar, String urlFinaliar, String visto) {
         Notificacion data = new Notificacion();
 
-
-
         //data.setId(getCount() + 1);
         data.setId(this.NotificacionId.incrementAndGet());
         //Log.d("IdInicio3: ","- "+this.NotificacionId.incrementAndGet());
@@ -203,9 +212,11 @@ public class RealmHelper {
     public void deleteNotification(int id){
         RealmResults<Notificacion> dataRealm = realm.where(Notificacion.class).equalTo("Id", id).findAll();
         realm.beginTransaction();
-        dataRealm.remove(0);
-        dataRealm.clear();
+        //dataRealm.remove(0);
+        //dataRealm.clear();
+        dataRealm.deleteAllFromRealm();
         realm.commitTransaction();
+
     }
 
     private <T extends RealmObject> AtomicInteger getIdByTable(Realm realm, Class<T> anyClass){

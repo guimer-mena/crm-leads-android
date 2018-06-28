@@ -22,7 +22,7 @@ public interface NotificationsContract {
     interface Presenter extends BasePresenter{
         void registerAppClient();
         void loadNotifications(String filtro);
-        void savePushMessage(String title, String description, Date expireDate, String url, String logo, String categoria, String subcategoria, String url_reagendar, String url_finalizar);
+        void savePushMessage(int id, String title, String description, Date expireDate, String url, String logo, String categoria, String subcategoria, String url_reagendar, String url_finalizar);
         ArrayList<Notificacion> showData(String filtro);
     }
 }

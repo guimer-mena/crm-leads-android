@@ -60,6 +60,7 @@ public class PreferenciasUsuario {
             editor.putString(PREF_USER_CORREO, usuario.getCorreo());
             editor.putString(PREF_USER_LOGO_EMPRESA, usuario.getLogo_empresa());
             editor.putString(PREF_USER_NOMBRE_EMPRESA, usuario.getNombre_empresa());
+            editor.putString(PREF_USER_PASSWORD,usuario.getPassword());
 
             editor.apply();
 
@@ -72,9 +73,38 @@ public class PreferenciasUsuario {
         mIsLoggedIn = false;
         SharedPreferences.Editor editor = mPrefs.edit();
         editor.putString(PREF_USER_CLAVE_SESION, null);
-        editor.putString(PREF_USER_ID, null);
-        editor.putString(PREF_USER_CUENTA, null);
-        editor.putString(PREF_USER_NOMBRE, null);
+        //editor.putString(PREF_USER_ID, null);
+        //editor.putString(PREF_USER_CUENTA, null);
+        //editor.putString(PREF_USER_NOMBRE, null);
+        editor.putString(PREF_USER_PASSWORD,null);
+        editor.putString(PREF_USER_FOTO, null);
+        editor.putString(PREF_USER_CORREO, null);
+        editor.putString(PREF_USER_NOMBRE_EMPRESA, null);
+        editor.putString(PREF_USER_LOGO_EMPRESA, null);
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    FirebaseInstanceId.getInstance().deleteInstanceId();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        editor.apply();
+
+    }
+    public void LogOut2(){
+        //mIsLoggedIn = false;
+        SharedPreferences.Editor editor = mPrefs.edit();
+        //editor.putString(PREF_USER_CLAVE_SESION, null);
+        //editor.putString(PREF_USER_ID, null);
+        //editor.putString(PREF_USER_CUENTA, null);
+        //editor.putString(PREF_USER_NOMBRE, null);
+        editor.putString(PREF_USER_PASSWORD,null);
         editor.putString(PREF_USER_FOTO, null);
         editor.putString(PREF_USER_CORREO, null);
         editor.putString(PREF_USER_NOMBRE_EMPRESA, null);

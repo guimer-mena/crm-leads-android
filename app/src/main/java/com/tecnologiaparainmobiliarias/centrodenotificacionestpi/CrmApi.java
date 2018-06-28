@@ -35,9 +35,13 @@ public interface CrmApi {
 
     @FormUrlEncoded
     @POST("usuarios/verificar_sesion_activa")
-    Call<VerificarSesion> verificarSesion(@Field("numeroCuenta") String cuenta, @Field("claveSession") String claveSession);
+    Call<VerificarSesion> verificarSesion(@Field("numeroCuenta") String cuenta,@Field("idAsesor") String idAsesor, @Field("claveSession") String claveSession);
 
     @FormUrlEncoded
     @POST("usuarios/obtener_token_activo")
     Call<ObtenerTokenActivo> obtenerTokenActivo(@Field("numeroCuenta") String cuenta, @Field("claveSession") String clave, @Field("idUsuario") String usuario, @Field("tipoAcceso") String tipoAcceso, @Field("dispositivoId") String dispositivoId);
+
+    @FormUrlEncoded
+    @POST("usuarios/verificar_sesion_movil")
+    Call<VerificarSesion> verificarSesionInicioSesion(@Field("numeroCuenta") String cuenta, @Field("usuario") String usuario, @Field("contrasenia") String contrasenia, @Field("tipo_acceso") String tipo_acceso, @Field("dispositivo_id") String dispositivo_id);
 }

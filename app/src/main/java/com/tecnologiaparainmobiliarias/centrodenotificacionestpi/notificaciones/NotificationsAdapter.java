@@ -1,5 +1,6 @@
 package com.tecnologiaparainmobiliarias.centrodenotificacionestpi.notificaciones;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.R;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotification;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Realm.RealmHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +34,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     Context context;
     ArrayList<Notificacion> pushNotifications;
     private OnItemClickListener itemClickListener;
+
 
 
     public NotificationsAdapter(Context context, OnItemClickListener listener, ArrayList<Notificacion> dataNotificacion){
@@ -89,6 +93,8 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         public Button btnFinalizar;
         public Button btnReagendar;
 
+        public RelativeLayout viewBackground, viewForeground;
+
         public ViewHolder(View itemView){
             super(itemView);
 
@@ -101,6 +107,9 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             verMas = (Button) itemView.findViewById(R.id.buttonVerMas);
             btnFinalizar = (Button) itemView.findViewById(R.id.buttonFinalizar);
             btnReagendar = (Button) itemView.findViewById(R.id.buttonReagendar);
+
+            viewBackground = itemView.findViewById(R.id.view_background);
+            viewForeground = itemView.findViewById(R.id.contentDetalle);
         }
 
         public void bind(final String titulo, final String descripcion, final Date fecha, final String url, final String icono, final String categoria, final String subcategoria, final String url_reagendar, final String url_finalizar, final OnItemClickListener listener){
@@ -171,6 +180,17 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
     public interface OnItemClickListener{
         void onItemClick(String url, int position);
+    }
+
+    public void RemoverNotificacion(int posicion){
+        pushNotifications.remove(posicion);
+        notifyItemRemoved(posicion);
+    }
+
+    public void RestoreItem(Notificacion notificacion, int posicion){
+        pushNotifications.add(posicion, notificacion);
+        notifyItemInserted(posicion);
 
     }
+
 }

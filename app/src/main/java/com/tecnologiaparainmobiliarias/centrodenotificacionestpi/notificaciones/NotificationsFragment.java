@@ -5,25 +5,35 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.CrmApi;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.MainActivity;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.R;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.RecyclerItemTouchHelper;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.data.PushNotification;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Notificacion;
+import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Realm.RealmHelper;
 import com.tecnologiaparainmobiliarias.centrodenotificacionestpi.model.Retrofit.ObtenerTokenActivo;
 
 import java.text.DateFormat;
@@ -32,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,7 +52,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * create an instance of this fragment.
  */
-public class NotificationsFragment extends Fragment implements NotificationsContract.View {
+public class NotificationsFragment extends Fragment implements NotificationsContract.View, RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
     public static final String ACTION_NOTIFY_NEW_NOTIFY = "NEW_NOTIFY";
 
@@ -50,13 +61,18 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
     private BroadcastReceiver mNotificacionReceiver;
 
     private RecyclerView mRecyclerView;
-    private LinearLayout mNoMessagesView;
+    private RelativeLayout mNoMessagesView;
     private NotificationsAdapter mNotificationAdapter;
 
     private NotificationsPresenter mPresenter;
 
     private Retrofit mRestAdaper;
     private CrmApi mCrmApi;
+
+    private CoordinatorLayout coordinatorLayout;
+    private ArrayList<Notificacion> arrayNotificaciones;
+
+    private RealmHelper realmHelper;
 
     public NotificationsFragment() {
         // Required empty public constructor
@@ -75,12 +91,14 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
 
         }
 
+        realmHelper = new RealmHelper(getContext());
+
         //Crear conexion REST
         mRestAdaper = new Retrofit.Builder().baseUrl(CrmApi.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         //Crear conexion
         mCrmApi = mRestAdaper.create(CrmApi.class);
 
-
+        arrayNotificaciones = new ArrayList<>();
 
         mNotificacionReceiver = new BroadcastReceiver() {
 
@@ -97,6 +115,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                     e.printStackTrace();
                     //Log.d("FECHA",e.toString());
                 }
+                int id = intent.getIntExtra("id",0);
                 String url = intent.getStringExtra("url");
                 String logo = intent.getStringExtra("logo");
                 String categoria = intent.getStringExtra("categoria");
@@ -104,7 +123,7 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
                 String url_reagendar = intent.getStringExtra("url_reagendar");
                 String url_finalizar = intent.getStringExtra("url_finalizar");
 
-                mPresenter.savePushMessage(titulo,descripcion,fecha,url,logo, categoria, subcategoria, url_reagendar, url_finalizar);
+                mPresenter.savePushMessage(id,titulo,descripcion,fecha,url,logo, categoria, subcategoria, url_reagendar, url_finalizar);
             }
         };
     }
@@ -115,6 +134,8 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
 
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_notifications,container,false);
+
+        coordinatorLayout = root.findViewById(R.id.coordinator_layout);
 
         mNotificationAdapter = new NotificationsAdapter(getActivity().getApplicationContext(), new NotificationsAdapter.OnItemClickListener() {
             @Override
@@ -166,8 +187,39 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
 
         }, mPresenter.showData("todos"));
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv_notifications_list);
-        mNoMessagesView = (LinearLayout) root.findViewById(R.id.noMessages);
+        mNoMessagesView = (RelativeLayout) root.findViewById(R.id.noMessages);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
         mRecyclerView.setAdapter(mNotificationAdapter);
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
+
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback1 = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                // Row is swiped from recycler view
+                // remove it from adapter
+            }
+
+            @Override
+            public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        };
+
+        // attaching the touch helper to recycler view
+        new ItemTouchHelper(itemTouchHelperCallback1).attachToRecyclerView(mRecyclerView);
 
         return root;
     }
@@ -213,4 +265,47 @@ public class NotificationsFragment extends Fragment implements NotificationsCont
         mNotificationAdapter.addItem(pushMessage);
     }
 
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+
+        if(viewHolder instanceof NotificationsAdapter.ViewHolder){
+            arrayNotificaciones = mNotificationAdapter.pushNotifications;
+            String nombre = arrayNotificaciones.get(viewHolder.getAdapterPosition()).getTitulo();
+            final int idEliminar = arrayNotificaciones.get(viewHolder.getAdapterPosition()).getId();
+
+            final Notificacion itemEliminado = arrayNotificaciones.get(viewHolder.getAdapterPosition());
+            final int posicionEliminado = viewHolder.getAdapterPosition();
+
+            mNotificationAdapter.RemoverNotificacion(position);
+
+            final int Restantes = mNotificationAdapter.getItemCount();
+            if(Restantes == 0){
+                showEmptyState(true);
+            }
+
+            final boolean[] eliminarBase = {true};
+            Snackbar snackbar = Snackbar
+                    .make(getActivity().findViewById(R.id.coordinator_layout), nombre + " eliminado!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("Deshacer", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Restantes == 0){
+                        showEmptyState(false);
+                    }
+                    eliminarBase[0] = false;
+                    mNotificationAdapter.RestoreItem(itemEliminado,posicionEliminado);
+                }
+            });
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+            snackbar.addCallback(new Snackbar.Callback(){
+               @Override
+               public void onDismissed(Snackbar snackbar, int event) {
+                   if(eliminarBase[0] == true){
+                       realmHelper.deleteNotification(idEliminar);
+                   }
+               }
+            });
+        }
+    }
 }

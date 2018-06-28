@@ -15,19 +15,40 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/view_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/contentDetalle">
+        android:layout_height="match_parent"
+        android:background="@color/bg_row_background">
 
-        <!--<TextView
-            android:id="@+id/tv_discount"
+        <ImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="@dimen/ic_delete"
+            android:layout_height="@dimen/ic_delete"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_delete"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="New Text"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            tools:text="50%" />-->
+            android:layout_marginRight="@dimen/padd_10"
+            android:layout_toLeftOf="@id/delete_icon"
+            android:text="Eliminar"
+            android:textColor="#fff"
+            android:textSize="13dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contentDetalle"
+        android:background="@android:color/white"
+        >
+
         <ImageView
             android:id="@+id/tv_image"
             android:layout_width="50dp"
@@ -72,18 +93,6 @@
             tools:text=" 16/03/2018"
             android:layout_alignParentRight="true"/>
 
-        <!--<Button
-            android:id="@+id/buttonVerMas"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_expiry_date"
-            android:layout_toRightOf="@+id/tv_image"
-            android:text="Ver más"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="?attr/colorPrimary"
-            android:textSize="13dp"
-            android:layout_alignParentRight="true"/>-->
         <LinearLayout
             android:id="@+id/layoutBotonAgenda"
             android:layout_width="match_parent"
@@ -138,30 +147,6 @@
                 android:drawablePadding="10dp"
                 />
         </LinearLayout>
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutBotonAgenda"
-            android:layout_toRightOf="@+id/tv_image"
-            android:gravity="center">
-            <Button
-                android:id="@+id/buttonVerMas"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ver más"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textColor="@color/colorPrimary"
-                android:textSize="13dp"
-                android:layout_alignParentRight="true"
-                android:drawableTint="@color/colorPrimary"
-                android:drawableLeft="@drawable/ic_share"
-                android:drawablePadding="10dp"
-                />
-        </LinearLayout>-->
-
-
-
 
     </RelativeLayout>
 

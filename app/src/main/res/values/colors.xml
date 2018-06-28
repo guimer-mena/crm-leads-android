@@ -9,5 +9,7 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="text_blank">#FFFFFF</color>
+
+    <color name="bg_row_background">#fa315b</color>
 </resources>
 

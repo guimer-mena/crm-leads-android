@@ -88,8 +88,10 @@ public class NotificationsPresenter implements NotificationsContract.Presenter {
     }
 
     @Override
-    public void savePushMessage(String title, String description, Date expireDate, String url, String logo, String categoria, String subcategoria, String url_reagendar, String url_finalizar) {
+    public void savePushMessage(int id, String title, String description, Date expireDate, String url, String logo, String categoria, String subcategoria, String url_reagendar, String url_finalizar) {
+
         Notificacion pushMessage = new Notificacion();
+        pushMessage.setId(id);
         pushMessage.setTitulo(title);
         pushMessage.setDescripcion(description);
         pushMessage.setFecha(expireDate);

@@ -62,7 +62,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
 
         //displayNotification2(remoteMessage.getData());
-        sendNewPromoBroadcast(remoteMessage);
+
 
         realmHelper = new RealmHelper(getApplicationContext());
 
@@ -76,13 +76,17 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
 
         realmHelper.addNewNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"),fecha,remoteMessage.getData().get("url"), remoteMessage.getData().get("icono"), remoteMessage.getData().get("categoria"), remoteMessage.getData().get("subcategoria"), remoteMessage.getData().get("url_reagendar"), remoteMessage.getData().get("url_finalizar"),"NO");
+        int idNuevo = realmHelper.obtenerUltimoId();
+        
+        sendNewPromoBroadcast(remoteMessage, idNuevo);
     }
 
-    private void sendNewPromoBroadcast(RemoteMessage remoteMessage) {
+    private void sendNewPromoBroadcast(RemoteMessage remoteMessage, int id) {
         Intent intent = new Intent(NotificationsFragment.ACTION_NOTIFY_NEW_NOTIFY);
         //intent.putExtra("titulo", remoteMessage.getNotification().getTitle());
         //intent.putExtra("descripcion", remoteMessage.getNotification().getBody());
 
+        intent.putExtra("id",id);
         intent.putExtra("titulo", remoteMessage.getData().get("title"));
         intent.putExtra("descripcion", remoteMessage.getData().get("body"));
         intent.putExtra("fecha", remoteMessage.getData().get("fecha"));
@@ -151,7 +155,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent).setPriority(1);
 
         String picture = data.get("icono");
         Bitmap bmp = null;

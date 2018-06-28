@@ -20,6 +20,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NotificationsFragment mNotificationFragment;
     private NotificationsPresenter mNotificationPresenter;
     private NavigationView navigationView;
+
 
 
     @Override
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        /*SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         StringBuilder builder = new StringBuilder();
 
         builder.append("\n" + "Perform Sync:\t" + sharedPrefs.getBoolean("perform_sync", false));
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         builder.append("\n\nClick on Settings Button at bottom right corner to Modify Your Prefrences");
         builder.append("\n\nLeads JAUS:\t"+sharedPrefs.getBoolean("pref_notificacion_leads_de_sitio_web_jaus", false));
 
-        Log.d("Configuracion :", builder.toString());
+        Log.d("Configuracion :", builder.toString());*/
 
 
     }

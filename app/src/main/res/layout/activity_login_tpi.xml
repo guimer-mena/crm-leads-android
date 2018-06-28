@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:layout_centerVertical="true"/>
 
         <ImageView
             android:id="@+id/image_logo"
@@ -60,6 +61,59 @@
                     android:layout_below="@id/textView23"/>
 
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/contenedorReintentar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            tools:visibility="visible"
+            >
+            <TextView
+                android:id="@+id/txtMensajeErrorInicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Iniciar"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtMensajeErrorInicio"
+                android:layout_centerHorizontal="true"
+                >
+
+                <Button
+                    android:id="@+id/btnReintentar"
+                    style=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Intentar de nuevo"
+                    android:textColor="@color/text_blank"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    />
+                <Button
+                    android:id="@+id/btnCancelar"
+                    style=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="5dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="cancelar"
+
+                    android:layout_alignRight="@+id/btnReintentar"
+                    android:textColor="@color/text_blank"
+                    android:textStyle="bold"
+
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <ScrollView
             android:id="@+id/login_form"
@@ -67,7 +121,8 @@
             android:layout_height="fill_parent"
             android:layout_above="@id/footer"
             android:layout_below="@+id/image_logo"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/email_login_form"
